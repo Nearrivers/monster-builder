@@ -438,6 +438,7 @@ video {
   --color-accent1: 255 252 245;
   --color-accent2: 244 241 228;
   --color-accent3: 230 227 209;
+  --color-accent4: 97 98 0;
   --color-content: 28 28 22;
 }
 
@@ -446,6 +447,7 @@ video {
     --color-accent1: 28 28 22;
     --color-accent2: 40 40 28;
     --color-accent3: 116 119 117;
+    --color-accent4: 203 204 88;
     --color-content: 255 252 245;
   }
 }
@@ -548,6 +550,17 @@ video {
   --tw-backdrop-opacity:  ;
   --tw-backdrop-saturate:  ;
   --tw-backdrop-sepia:  ;
+}
+
+.btn {
+  padding: 5px 15px;
+  border-radius: 1.5rem;
+  font-weight: 500
+}
+
+.btn-filled {
+  background-color: rgb(var(--color-accent4) / 1);
+  color: rgb(var(--color-accent1) / 1);
 }
 
 .bg-accent-1 {

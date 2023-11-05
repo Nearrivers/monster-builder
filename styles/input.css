@@ -7,6 +7,7 @@
         --color-accent1: 255 252 245;
         --color-accent2: 244 241 228;
         --color-accent3: 230 227 209;
+        --color-accent4: 97 98 0;
         --color-content: 28 28 22;
     }
 
@@ -15,7 +16,20 @@
             --color-accent1: 28 28 22;
             --color-accent2: 40 40 28;
             --color-accent3: 116 119 117;
+            --color-accent4: 203 204 88;
             --color-content: 255 252 245;
         }
+    }
+}
+
+@layer components {
+    .btn {
+        padding: 5px 15px;
+        @apply font-medium rounded-3xl
+    }
+
+    .btn-filled {
+        background-color: theme('colors.accent.4');
+        color: theme('colors.accent.1');
     }
 }

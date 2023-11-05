@@ -4,9 +4,8 @@ import (
 	"fmt"
 	"html/template"
 	"log"
-	campaign "nearrivers/monster-creator/src/campaigns"
 	"nearrivers/monster-creator/src/db"
-	"nearrivers/monster-creator/src/models"
+	router "nearrivers/monster-creator/src/routers"
 	"net/http"
 
 	"github.com/julienschmidt/httprouter"
@@ -23,20 +22,18 @@ func setupRoutes(r *httprouter.Router) {
 
 	r.GET("/", indexRoute)
 
-	campaign.ConfigureCampaignRoutes(r)
+	router.ConfigureCampaignRoutes(r)
 }
 
 func main() {
 	router := httprouter.New()
 	fmt.Println("Hello world")
 
-	db, err := db.ConnectToDb()
+	err := db.ConnectToDb()
 
 	if err != nil {
 		panic(err)
 	}
-
-	db.AutoMigrate(&models.Campaign{}, &models.Monster{}, &models.SpecialTrait{}, &models.Action{})
 
 	setupRoutes(router)
 
