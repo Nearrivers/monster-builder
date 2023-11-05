@@ -4,11 +4,21 @@ import (
 	"fmt"
 	"html/template"
 	"log"
+	"nearrivers/monster-creator/src/db"
+	"nearrivers/monster-creator/src/models"
 	"net/http"
 )
 
 func main() {
 	fmt.Println("Hello world")
+
+	db, err := db.ConnectToDb()
+
+	if err != nil {
+		panic(err)
+	}
+
+	db.AutoMigrate(&models.Campaign{}, &models.Monster{}, &models.SpecialTrait{}, &models.Action{})
 
 	h1 := func(w http.ResponseWriter, r *http.Request) {
 		tmpl := template.Must(template.ParseFiles("index.html"))

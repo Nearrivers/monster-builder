@@ -1,16 +1,17 @@
-package db
+package models
 
 import "gorm.io/gorm"
 
 type Campaign struct {
 	gorm.Model
 	Name     string
-	Monsters []Monster `gorm:"constraint:OnUpdate:CASCADE,OnDelete:CASCADE;"`
+	Monsters []Monster `gorm:"constraint:OnUpdate:CASCADE,OnDelete:CASCADE;foreignKey:CampaignID;references:ID"`
 }
 
 type Monster struct {
-	Name                        string `gorm:"primaryKey"`
-	CampaignID                  uint   `gorm:"primaryKey"`
+	gorm.Model
+	Name                        string
+	CampaignID                  uint
 	Type                        string
 	SubType                     string
 	Height                      string
@@ -35,8 +36,8 @@ type Monster struct {
 	Languages                   string
 	Challenge                   string
 	MasteryBonus                uint8
-	SpecialTraits               []SpecialTrait
-	Actions                     []Action
+	SpecialTraits               []SpecialTrait `gorm:"constraint:OnUpdate:CASCADE,OnDelete:CASCADE;foreignKey:MonsterID;references:ID"`
+	Actions                     []Action       `gorm:"constraint:OnUpdate:CASCADE,OnDelete:CASCADE;foreignKey:MonsterID;references:ID"`
 	LegendaryActionsDescription string
 	Description                 string
 	Portrait                    []byte
