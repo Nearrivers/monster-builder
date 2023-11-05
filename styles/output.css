@@ -434,6 +434,22 @@ video {
   display: none;
 }
 
+:root {
+  --color-accent1: 255 252 245;
+  --color-accent2: 244 241 228;
+  --color-accent3: 230 227 209;
+  --color-content: 28 28 22;
+}
+
+@media (prefers-color-scheme:dark) {
+  :root {
+    --color-accent1: 28 28 22;
+    --color-accent2: 40 40 28;
+    --color-accent3: 116 119 117;
+    --color-content: 255 252 245;
+  }
+}
+
 *, ::before, ::after {
   --tw-border-spacing-x: 0;
   --tw-border-spacing-y: 0;
@@ -534,18 +550,18 @@ video {
   --tw-backdrop-sepia:  ;
 }
 
-.text-3xl {
-  font-size: 1.875rem;
-  line-height: 2.25rem;
+.bg-accent-1 {
+  --tw-bg-opacity: 1;
+  background-color: rgb(var(--color-accent1) / var(--tw-bg-opacity));
 }
 
 .font-bold {
   font-weight: 700;
 }
 
-.text-cyan-500 {
+.text-content {
   --tw-text-opacity: 1;
-  color: rgb(6 182 212 / var(--tw-text-opacity));
+  color: rgb(var(--color-content) / var(--tw-text-opacity));
 }
 
 .underline {

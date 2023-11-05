@@ -13,11 +13,8 @@ import (
 )
 
 func setupRoutes(r *httprouter.Router) {
-	styleFs := http.FileServer(http.Dir("./styles"))
-	http.Handle("/styles/", http.StripPrefix("/styles", styleFs))
-
-	scriptsFs := http.FileServer(http.Dir("./scripts"))
-	http.Handle("/scripts/", http.StripPrefix("/scripts", scriptsFs))
+	r.ServeFiles("/styles/*filepath", http.Dir("./styles"))
+	r.ServeFiles("/scripts/*filepath", http.Dir("./scripts"))
 
 	indexRoute := func(w http.ResponseWriter, r *http.Request, _ httprouter.Params) {
 		tmpl := template.Must(template.ParseFiles("index.html"))

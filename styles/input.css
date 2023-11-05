@@ -1,3 +1,21 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+@layer base {
+    :root {
+        --color-accent1: 255 252 245;
+        --color-accent2: 244 241 228;
+        --color-accent3: 230 227 209;
+        --color-content: 28 28 22;
+    }
+
+    @media (prefers-color-scheme:dark) {
+        :root {
+            --color-accent1: 28 28 22;
+            --color-accent2: 40 40 28;
+            --color-accent3: 116 119 117;
+            --color-content: 255 252 245;
+        }
+    }
+}
