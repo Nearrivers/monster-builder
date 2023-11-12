@@ -4,12 +4,14 @@
   "description": "Créateur de monstre DnD",
   "main": "index.html",
   "scripts": {
+    "start:dev": "nodemon -e go,html,css,json --exec go run main.go",
     "style": "npx tailwindcss -i ./styles/input.css -o ./styles/output.css --watch",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "author": "",
   "license": "ISC",
   "devDependencies": {
+    "nodemon": "^3.0.1",
     "prettier": "^3.0.3",
     "prettier-plugin-go-template": "^0.0.15",
     "tailwindcss": "^3.3.5"

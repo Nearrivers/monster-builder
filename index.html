@@ -6,10 +6,13 @@
         <title>Créateur de monstre DnD</title>
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <link href="styles/output.css" rel="stylesheet">
+        <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined" rel="stylesheet" />
         <script type="text/javascript" src="scripts/htmx.min.js"></script>
     </head>
-    <body>
-        <h1 class="font-bold">Créateur de Monstres DnD</h1>
-        <button class="btn btn-filled" hx-get="/campaign" hx-trigger="load" hx-swap="outerHTML">Bouton</button>
+    <body class="p-4">
+        <h1 class="text-xl pt-4 pb-8">Créateur de Monstres DnD</h1>
+        <main class="flex">
+            <span hx-get="/campaign" hx-trigger="load" hx-swap="outerHTML"></span>
+        </main>
     </body>
 </html>

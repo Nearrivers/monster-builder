@@ -20,7 +20,17 @@ func setupRoutes(r *httprouter.Router) {
 		tmpl.Execute(w, nil)
 	}
 
+	reactivityRoute := func(w http.ResponseWriter, r *http.Request, _ httprouter.Params) {
+		defer r.Body.Close()
+		r.ParseForm()
+
+		body := r.FormValue("test")
+
+		fmt.Fprintf(w, "%s", body)
+	}
+
 	r.GET("/", indexRoute)
+	r.POST("/", reactivityRoute)
 
 	router.ConfigureCampaignRoutes(r)
 }
