@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="fr" class="bg-accent-1 text-content">
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <title>Créateur de monstre DnD</title>
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <link href="/styles/output.css" rel="stylesheet">
+        <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined" rel="stylesheet" />
+        <script type="text/javascript" src="/scripts/htmx.min.js"></script>
+    </head>
+    <body class="p-4">
+        <h1 class="text-xl pt-4 pb-8 font-bold">Créer un nouveau monstre</h1>
+        <main class="flex flex-col lg:flex-row gap-4">
+            <section class="flex-1">
+              <form>
+                <div class="text-field mb-4">
+                  <label for="Name">Nom de la créature</label>
+                  <input
+                    type="text"
+                    name="Name"
+                    id="Name"
+                    hx-post="/"
+                    hx-trigger="input"
+                    hx-target="#oui"
+                    hx-swap="innerHTML"
+                    placeholder=" "
+                    class="w-full"
+                  >
+                </div>
+
+                <!-- Stats -->
+                <h2 class="my-4 p-4 text-lg font-medium bg-accent-2 rounded-lg">
+                  Stats
+                </h2>
+                <div
+                  class="grid gap-4 grid-cols-form-layout"
+                  hx-get="/monster/new/stats"
+                  hx-swap="innerHTML"
+                  hx-trigger="load"
+                ></div>
+
+                <!-- Compétences -->
+                <h2 class="my-4 p-4 text-lg font-medium bg-accent-2 rounded-lg">
+                  Compétences
+                </h2>
+                <div
+                  hx-get="/monster/new/skills/1"
+                  hx-swap="innerHTML"
+                  hx-trigger="load"
+                ></div>
+
+                <!-- Actions -->
+                <h2 class="my-4 p-4 text-lg font-medium bg-accent-2 rounded-lg">
+                  Actions
+                </h2>
+                <div
+                  hx-get="/monster/new/actions/1"
+                  hx-swap="innerHTML"
+                  hx-trigger="load"
+                ></div>
+
+                <!-- Actions bonus -->
+                <h2 class="my-4 p-4 text-lg font-medium bg-accent-2 rounded-lg">
+                  Actions bonus
+                </h2>
+                <div
+                  hx-get="/monster/new/actions/1"
+                  hx-swap="innerHTML"
+                  hx-trigger="load"
+                ></div>
+
+                <!-- Actions bonus -->
+                <h2 class="my-4 p-4 text-lg font-medium bg-accent-2 rounded-lg">
+                  Actions bonus
+                </h2>
+                <div
+                  hx-get="/monster/new/actions/1"
+                  hx-swap="innerHTML"
+                  hx-trigger="load"
+                ></div>
+
+                <!-- Actions légendaires -->
+                <h2 class="my-4 p-4 text-lg font-medium bg-accent-2 rounded-lg">
+                  Actions légendaires
+                </h2>
+                <div
+                  hx-get="/monster/new/actions/1"
+                  hx-swap="innerHTML"
+                  hx-trigger="load"
+                ></div>
+
+                <div class="text-field">
+                  <label for="Description{{ .current }}">Description de la créature</label>
+                  <textarea
+                    name="Description"
+                    id="Description"
+                    hx-post="/"
+                    hx-trigger="input"
+                    hx-target="#oui"
+                    hx-swap="innerHTML"
+                    placeholder=" "
+                    class="w-full"
+                    rows="8"
+                  ></textarea>
+                </div>
+              </form>
+            </section>
+            <section
+              class="flex-1"
+              hx-get="/test"
+              hx-trigger="load"
+              hx-swap="innerHTML"
+              >
+            </section> 
+        </main>
+    </body>
+</html>

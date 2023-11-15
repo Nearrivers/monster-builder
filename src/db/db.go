@@ -19,7 +19,12 @@ func ConnectToDb() error {
 		return err
 	}
 
-	db.AutoMigrate(&models.Campaign{}, &models.Monster{}, &models.SpecialTrait{}, &models.Action{})
+	db.AutoMigrate(
+		&models.Campaign{},
+		&models.Monster{},
+		&models.SpecialTrait{},
+		&models.Action{},
+	)
 
 	dB = db
 

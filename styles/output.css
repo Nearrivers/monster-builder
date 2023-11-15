@@ -452,6 +452,42 @@ video {
   }
 }
 
+input, select, textarea {
+  border-radius: 4px;
+  border: 1px solid rgb(var(--color-accent3) / 1);
+  font-size: 16px;
+  transition: all .1s;
+  color: rgb(var(--color-content) / 1);
+  background-color: transparent;
+  padding-left: 1.2rem;
+  z-index: 1;
+}
+
+input, select {
+  height: 40px;
+}
+
+textarea {
+  padding-top: 5px;
+}
+
+select {
+  cursor: pointer;
+}
+
+label {
+  cursor: text;
+}
+
+input:focus, select:focus, textarea:focus {
+  outline: none;
+}
+
+option {
+  background-color: rgb(var(--color-accent1) / 1);
+  cursor: pointer;
+}
+
 *, ::before, ::after {
   --tw-border-spacing-x: 0;
   --tw-border-spacing-y: 0;
@@ -554,6 +590,7 @@ video {
 
 .btn {
   padding: 5px 15px;
+  height: 34px;
   border-radius: 1.5rem;
   font-weight: 500
 }
@@ -563,13 +600,121 @@ video {
   color: rgb(var(--color-accent1) / 1);
 }
 
+.btn-outlined {
+  & span {
+    font-size: 20px;
+  }
+  border-width: 1px;
+  --tw-border-opacity: 1;
+  border-color: rgb(239 68 68 / var(--tw-border-opacity));
+  font-weight: 400;
+  --tw-text-opacity: 1;
+  color: rgb(239 68 68 / var(--tw-text-opacity))
+}
+
+.text-field {
+  position: relative;
+  & label {
+    position: absolute;
+    display: block;
+    top: 50%;
+    left: 10px;
+    padding: 0 10px;
+    opacity: .8;
+    transform: translateY(-50%);
+    color: rgb(var(--color-accent3) / 1);
+    transition: all .2s ease;
+    backface-visibility: hidden;
+    transform-origin: left;
+  }
+  & input:focus,
+        & textarea:focus {
+    border: 1px solid rgb(var(--color-accent4) / 1);
+  }
+  &:has(input:focus) label,
+        &:has(textarea:focus) label {
+    top: -11px;
+    left: 12px;
+    color: rgb(var(--color-accent4) / 1);
+    background-color: rgb(var(--color-accent1) / 1);
+    transform: scale(.7);
+    opacity: 1;
+  }
+}
+
+.text-field input:not(:-moz-placeholder-shown), .text-field textarea:not(:-moz-placeholder-shown) {
+  outline: 0;
+  border: 1px solid rgb(var(--color-accent4) / 1);
+}
+
+.text-field input:not(:placeholder-shown),
+    .text-field textarea:not(:placeholder-shown) {
+  outline: 0;
+  border: 1px solid rgb(var(--color-accent4) / 1);
+}
+
+.text-field:has(input:not(:-moz-placeholder-shown)) label, .text-field:has(textarea:not(:-moz-placeholder-shown)) label {
+  top: -11px;
+  left: 12px;
+  color: rgb(var(--color-accent4) / 1);
+  background-color: rgb(var(--color-accent1) / 1);
+  transform: scale(.7);
+  opacity: 1;
+}
+
+.text-field:has(input:not(:placeholder-shown)) label, 
+    .text-field:has(textarea:not(:placeholder-shown)) label {
+  top: -11px;
+  left: 12px;
+  color: rgb(var(--color-accent4) / 1);
+  background-color: rgb(var(--color-accent1) / 1);
+  transform: scale(.7);
+  opacity: 1;
+}
+
+.col-span-2 {
+  grid-column: span 2 / span 2;
+}
+
+.col-span-3 {
+  grid-column: span 3 / span 3;
+}
+
+.col-span-4 {
+  grid-column: span 4 / span 4;
+}
+
+.col-span-full {
+  grid-column: 1 / -1;
+}
+
+.row-start-2 {
+  grid-row-start: 2;
+}
+
+.my-4 {
+  margin-top: 1rem;
+  margin-bottom: 1rem;
+}
+
+.mb-4 {
+  margin-bottom: 1rem;
+}
+
+.mr-auto {
+  margin-right: auto;
+}
+
 .flex {
   display: flex;
 }
 
-.w-min {
-  width: -moz-min-content;
-  width: min-content;
+.grid {
+  display: grid;
+}
+
+.w-full {
+  width: 100%;
 }
 
 .w-max {
@@ -577,8 +722,24 @@ video {
   width: max-content;
 }
 
+.flex-1 {
+  flex: 1 1 0%;
+}
+
 .cursor-pointer {
   cursor: pointer;
+}
+
+.grid-cols-form-layout {
+  grid-template-columns: repeat(auto-fill, minmax(120px, 1fr));
+}
+
+.flex-col {
+  flex-direction: column;
+}
+
+.items-center {
+  align-items: center;
 }
 
 .justify-between {
@@ -589,12 +750,24 @@ video {
   gap: 0.5rem;
 }
 
+.gap-4 {
+  gap: 1rem;
+}
+
 .overflow-hidden {
   overflow: hidden;
 }
 
 .rounded-2xl {
   border-radius: 1rem;
+}
+
+.rounded-lg {
+  border-radius: 0.5rem;
+}
+
+.rounded-xl {
+  border-radius: 0.75rem;
 }
 
 .border {
@@ -619,45 +792,32 @@ video {
   background-color: rgb(var(--color-accent1) / var(--tw-bg-opacity));
 }
 
-.bg-accent-3 {
-  --tw-bg-opacity: 1;
-  background-color: rgb(var(--color-accent3) / var(--tw-bg-opacity));
-}
-
 .bg-accent-2 {
   --tw-bg-opacity: 1;
   background-color: rgb(var(--color-accent2) / var(--tw-bg-opacity));
 }
 
-.bg-black {
+.bg-accent-4 {
   --tw-bg-opacity: 1;
-  background-color: rgb(0 0 0 / var(--tw-bg-opacity));
+  background-color: rgb(var(--color-accent4) / var(--tw-bg-opacity));
 }
 
 .p-4 {
   padding: 1rem;
 }
 
-.p-2 {
-  padding: 0.5rem;
+.px-3 {
+  padding-left: 0.75rem;
+  padding-right: 0.75rem;
 }
 
-.py-2 {
-  padding-top: 0.5rem;
-  padding-bottom: 0.5rem;
-}
-
-.px-2 {
-  padding-left: 0.5rem;
-  padding-right: 0.5rem;
+.py-4 {
+  padding-top: 1rem;
+  padding-bottom: 1rem;
 }
 
 .pb-8 {
   padding-bottom: 2rem;
-}
-
-.pl-4 {
-  padding-left: 1rem;
 }
 
 .pt-4 {
@@ -668,21 +828,58 @@ video {
   text-align: center;
 }
 
+.text-lg {
+  font-size: 1.125rem;
+  line-height: 1.75rem;
+}
+
 .text-xl {
   font-size: 1.25rem;
   line-height: 1.75rem;
 }
 
-.text-sm {
-  font-size: 0.875rem;
-  line-height: 1.25rem;
+.font-bold {
+  font-weight: 700;
+}
+
+.font-medium {
+  font-weight: 500;
 }
 
 .font-semibold {
   font-weight: 600;
 }
 
+.text-accent-1 {
+  --tw-text-opacity: 1;
+  color: rgb(var(--color-accent1) / var(--tw-text-opacity));
+}
+
 .text-content {
   --tw-text-opacity: 1;
   color: rgb(var(--color-content) / var(--tw-text-opacity));
+}
+
+.transition-transform {
+  transition-property: transform;
+  transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+  transition-duration: 150ms;
+}
+
+.hover\:scale-125:hover {
+  --tw-scale-x: 1.25;
+  --tw-scale-y: 1.25;
+  transform: translate(var(--tw-translate-x), var(--tw-translate-y)) rotate(var(--tw-rotate)) skewX(var(--tw-skew-x)) skewY(var(--tw-skew-y)) scaleX(var(--tw-scale-x)) scaleY(var(--tw-scale-y));
+}
+
+.hover\:scale-105:hover {
+  --tw-scale-x: 1.05;
+  --tw-scale-y: 1.05;
+  transform: translate(var(--tw-translate-x), var(--tw-translate-y)) rotate(var(--tw-rotate)) skewX(var(--tw-skew-x)) skewY(var(--tw-skew-y)) scaleX(var(--tw-scale-x)) scaleY(var(--tw-scale-y));
+}
+
+@media (min-width: 1024px) {
+  .lg\:flex-row {
+    flex-direction: row;
+  }
 }

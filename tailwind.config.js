@@ -11,6 +11,9 @@ module.exports = {
           4: "rgb(var(--color-accent4) / <alpha-value>)",
         },
         content: "rgb(var(--color-content) / <alpha-value>)"
+      },
+      gridTemplateColumns: {
+        "form-layout": "repeat(auto-fill, minmax(120px, 1fr))"
       }
     },
   },

@@ -1,4 +1,4 @@
-package handler
+package campaign
 
 import (
 	"fmt"
@@ -27,8 +27,14 @@ func GetAllCampaigns(w http.ResponseWriter, r *http.Request, _ httprouter.Params
 	}
 
 	if length := len(campaigns); length == 0 {
-		t := template.Must(template.ParseFiles(filepath.Join(fileBasePath, "NoCampaignFound.html")))
-		t.Execute(w, nil)
+		htmlStr := "<p>Aucune campagne n'a été trouvée</p>"
+		tmpl, err := template.New("Not found").Parse(htmlStr)
+
+		if err != nil {
+			panic(err)
+		}
+
+		tmpl.Execute(w, nil)
 	} else {
 		tD.Campaigns = campaigns
 		t := template.Must(template.ParseFiles(filepath.Join(fileBasePath, "AllCampaigns.html")))

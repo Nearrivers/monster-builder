@@ -11,8 +11,21 @@
     </head>
     <body class="p-4">
         <h1 class="text-xl pt-4 pb-8">Créateur de Monstres DnD</h1>
-        <main class="flex">
+        <main class="flex gap-4">
             <span hx-get="/campaign" hx-trigger="load" hx-swap="outerHTML"></span>
+            <section>
+                <a
+                    hx-get="/monster/new"
+                    class="bg-accent-4 px-3 py-4 rounded-xl flex gap-4 text-accent-1 font-medium cursor-pointer"
+                    hx-target="body"
+                    hx-push-url="true"
+                >
+                    <span class="material-symbols-outlined">
+                        edit
+                    </span>
+                    Nouveau monstre
+                </a>
+            </section>
         </main>
     </body>
 </html>

@@ -1,0 +1,53 @@
+<article>
+  <div class="flex gap-4 items-center mb-4">
+    <div class="text-field mr-auto w-full">
+      <label for="skill{{ .current }}">Nom</label>
+      <input
+        type="text"
+        name="skill"
+        id="skill{{ .current }}"
+        hx-post="/"
+        hx-trigger="input"
+        hx-target="#oui"
+        hx-swap="innerHTML"
+        placeholder=" "
+        class="w-full"
+      >
+    </div>
+    <button
+      class="btn btn-outlined flex gap-2 items-center transition-transform hover:scale-105"
+      hx-delete="/monster/new/skills"
+      hx-target="closest article"
+      hx-swap="outerHTML"
+    >
+      <span class="material-symbols-outlined">
+        delete
+      </span>
+      <p>Supprimer</p>
+    </button>
+  </div>
+  <div class="text-field mb-4">
+    <label for="description{{ .current }}">Description</label>
+    <textarea
+      name="description"
+      id="description{{ .current }}"
+      hx-post="/"
+      hx-trigger="input"
+      hx-target="#oui"
+      hx-swap="innerHTML"
+      placeholder=" "
+      class="w-full"
+      rows="8"
+    ></textarea>
+  </div>
+</article>
+<button
+  class="btn btn-filled flex"
+  hx-get="/monster/new/skills/{{ .next }}"
+  hx-swap="outerHTML"
+>
+  <span class="material-symbols-outlined">
+    add
+  </span>
+  <p>Ajouter une compétence</p>
+</button>

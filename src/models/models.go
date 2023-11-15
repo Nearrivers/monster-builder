@@ -15,7 +15,7 @@ type Monster struct {
 	Type                        string
 	SubType                     string
 	Height                      string
-	Alignement                  string
+	Alignment                   string
 	ArmorClass                  uint8
 	HealthPoints                uint64
 	Speed                       uint32
@@ -28,8 +28,8 @@ type Monster struct {
 	SavingThrows                string
 	Skills                      string
 	Vulnerabilities             string
-	Resistences                 string
-	DamageTypeImmunities        string
+	Resistances                 string
+	DamageImmunities            string
 	StateImmunities             string
 	Senses                      string
 	PassivePerception           uint8
@@ -56,4 +56,14 @@ type Action struct {
 	Description string
 	Type        string
 	MonsterID   uint
+}
+
+type Height struct {
+	ID   uint `gorm:"primarykey"`
+	Name string
+}
+
+type Alignment struct {
+	ID   uint `gorm:"primarykey"`
+	Name string
 }

@@ -4,8 +4,9 @@ import (
 	"fmt"
 	"html/template"
 	"log"
+	"nearrivers/monster-creator/src/campaign"
 	"nearrivers/monster-creator/src/db"
-	router "nearrivers/monster-creator/src/routers"
+	"nearrivers/monster-creator/src/monster"
 	"net/http"
 
 	"github.com/julienschmidt/httprouter"
@@ -32,7 +33,8 @@ func setupRoutes(r *httprouter.Router) {
 	r.GET("/", indexRoute)
 	r.POST("/", reactivityRoute)
 
-	router.ConfigureCampaignRoutes(r)
+	campaign.ConfigureRoutes(r)
+	monster.ConfigureRoutes(r)
 }
 
 func main() {
@@ -47,6 +49,11 @@ func main() {
 
 	setupRoutes(router)
 
-	// log.Fatal permet de, si jamais une erreur advient dans la fonction http.ListenAndServe(), log cette erreur et termine le programme
+	router.GET("/test", func(w http.ResponseWriter, r *http.Request, p httprouter.Params) {
+		t := template.Must(template.ParseFiles("./templates/monster/test.html"))
+		t.Execute(w, nil)
+	})
+
+	// log.Fatal permet de, si jamais une erreur advient dans la fonction http.ListenAndServe(), logger cette erreur et terminer le programme
 	log.Fatal(http.ListenAndServe(":8080", router))
 }
