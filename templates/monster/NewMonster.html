@@ -24,7 +24,7 @@
         </header>
         <main class="flex flex-col lg:flex-row gap-4 p-4">
           <section class="flex-1">
-            <form id="new-monster" hx-post="/monster/new">
+            <form id="new-monster" hx-post="/monster/new" enctype="multipart/form-data">
               <select
                 name="Campaign"
                 id="campaign"
@@ -60,6 +60,10 @@
                   placeholder=" "
                   class="w-full"
                 >
+              </div>
+              <div>
+                <label for="Portrait">Portrait</label>
+                <input type="file" name="Portrait" id="Portrait">
               </div>
 
               <!-- Stats -->
@@ -124,12 +128,7 @@
               ></div>
             </form>
           </section>
-          <section
-            class="flex-1"
-            hx-get="/test"
-            hx-trigger="load"
-            hx-swap="innerHTML"
-            >
+          <section class="flex-1">
           </section>
         </main>
     </body>

@@ -3,6 +3,7 @@ package monster
 import (
 	"fmt"
 	"html/template"
+	"io"
 	"nearrivers/monster-creator/src/db"
 	"nearrivers/monster-creator/src/models"
 	"net/http"
@@ -140,7 +141,7 @@ func getNewMonsterActions(w http.ResponseWriter, r *http.Request, ps httprouter.
 func createMonster(w http.ResponseWriter, r *http.Request, _ httprouter.Params) {
 	defer r.Body.Close()
 
-	err := r.ParseForm()
+	err := r.ParseMultipartForm(10 << 20)
 	if err != nil {
 		http.Error(w, err.Error(), http.StatusBadRequest)
 		return
@@ -183,7 +184,6 @@ func createMonster(w http.ResponseWriter, r *http.Request, _ httprouter.Params) 
 	monsterEntity.Challenge = monster.Challenge
 	monsterEntity.MasteryBonus = monster.MasteryBonus
 	monsterEntity.Description = monster.Description
-	monsterEntity.Portrait = monster.Portrait
 
 	if monster.SpecialTraits[0].Name != "" {
 		for _, st := range monster.SpecialTraits {
@@ -233,6 +233,24 @@ func createMonster(w http.ResponseWriter, r *http.Request, _ httprouter.Params) 
 			monsterEntity.Actions = append(monsterEntity.Actions, newLegendaryAction)
 		}
 	}
+
+	file, handler, err := r.FormFile("Portrait")
+	if err != nil {
+		http.Error(w, err.Error(), http.StatusBadRequest)
+		return
+	}
+	defer file.Close()
+	fmt.Printf("Uploaded File: %+v\n", handler.Filename)
+	fmt.Printf("File Size: %+v\n", handler.Size)
+	fmt.Printf("MIME Header: %+v\n", handler.Header)
+
+	fileBytes, err := io.ReadAll(file)
+	if err != nil {
+		http.Error(w, err.Error(), http.StatusInternalServerError)
+		return
+	}
+
+	monsterEntity.Portrait = fileBytes
 
 	if result := db.Create(&monsterEntity); result.Error != nil {
 		http.Error(w, result.Error.Error(), http.StatusBadRequest)

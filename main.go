@@ -39,7 +39,6 @@ func setupRoutes(r *httprouter.Router) {
 
 func main() {
 	router := httprouter.New()
-	fmt.Println("Hello world")
 
 	err := db.ConnectToDb()
 
@@ -49,10 +48,7 @@ func main() {
 
 	setupRoutes(router)
 
-	router.GET("/test", func(w http.ResponseWriter, r *http.Request, p httprouter.Params) {
-		t := template.Must(template.ParseFiles("./templates/monster/test.html"))
-		t.Execute(w, nil)
-	})
+	fmt.Println("Server launched")
 
 	// log.Fatal permet de, si jamais une erreur advient dans la fonction http.ListenAndServe(), logger cette erreur et terminer le programme
 	log.Fatal(http.ListenAndServe(":8080", router))
