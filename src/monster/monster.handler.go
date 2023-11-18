@@ -185,65 +185,54 @@ func createMonster(w http.ResponseWriter, r *http.Request, _ httprouter.Params) 
 	monsterEntity.Description = monster.Description
 	monsterEntity.Portrait = monster.Portrait
 
-	specialTraits := make([]models.SpecialTrait, len(monster.SpecialTraits))
-	if len(monster.SpecialTraits) > 0 {
+	if monster.SpecialTraits[0].Name != "" {
 		for _, st := range monster.SpecialTraits {
 			newSpecialTrait := models.SpecialTrait{}
 			newSpecialTrait.Name = st.Name
 			newSpecialTrait.Description = st.Description
+			monsterEntity.SpecialTraits = append(monsterEntity.SpecialTraits, newSpecialTrait)
 		}
 	}
 
-	monsterEntity.SpecialTraits = specialTraits
-
-	actions := make([]models.Action, len(monster.Actions))
-	reactions := make([]models.Action, len(monster.Reactions))
-	bonusactions := make([]models.Action, len(monster.BonusActions))
-	legendaryActions := make([]models.Action, len(monster.LegendaryActions))
-
-	if len(monster.Actions) > 0 {
-		for _, r := range monster.Reactions {
+	if monster.Actions[0].Name != "" {
+		for _, ac := range monster.Actions {
 			newAction := models.Action{}
-			newAction.Name = r.Name
-			newAction.Description = r.Description
+			newAction.Name = ac.Name
+			newAction.Description = ac.Description
 			newAction.Type = "Action"
-			actions = append(actions, newAction)
+			monsterEntity.Actions = append(monsterEntity.Actions, newAction)
 		}
 	}
 
-	if len(monster.Reactions) > 0 {
-		for _, r := range monster.Reactions {
+	if monster.Reactions[0].Name != "" {
+		for _, re := range monster.Reactions {
 			newReaction := models.Action{}
-			newReaction.Name = r.Name
-			newReaction.Description = r.Description
+			newReaction.Name = re.Name
+			newReaction.Description = re.Description
 			newReaction.Type = "Réaction"
-			reactions = append(reactions, newReaction)
+			monsterEntity.Actions = append(monsterEntity.Actions, newReaction)
 		}
 	}
 
-	if len(monster.BonusActions) > 0 {
-		for _, r := range monster.BonusActions {
+	if monster.BonusActions[0].Name != "" {
+		for _, bac := range monster.BonusActions {
 			newBonusAction := models.Action{}
-			newBonusAction.Name = r.Name
-			newBonusAction.Description = r.Description
+			newBonusAction.Name = bac.Name
+			newBonusAction.Description = bac.Description
 			newBonusAction.Type = "Action bonus"
-			bonusactions = append(bonusactions, newBonusAction)
+			monsterEntity.Actions = append(monsterEntity.Actions, newBonusAction)
 		}
 	}
 
-	if len(monster.LegendaryActions) > 0 {
-		for _, r := range monster.LegendaryActions {
+	if monster.LegendaryActions[0].Name != "" {
+		for _, lac := range monster.LegendaryActions {
 			newLegendaryAction := models.Action{}
-			newLegendaryAction.Name = r.Name
-			newLegendaryAction.Description = r.Description
+			newLegendaryAction.Name = lac.Name
+			newLegendaryAction.Description = lac.Description
 			newLegendaryAction.Type = "Action légendaires"
-			legendaryActions = append(legendaryActions, newLegendaryAction)
+			monsterEntity.Actions = append(monsterEntity.Actions, newLegendaryAction)
 		}
 	}
-
-	monsterEntity.Actions = append(actions, reactions...)
-	monsterEntity.Actions = append(monsterEntity.Actions, bonusactions...)
-	monsterEntity.Actions = append(monsterEntity.Actions, legendaryActions...)
 
 	if result := db.Create(&monsterEntity); result.Error != nil {
 		http.Error(w, result.Error.Error(), http.StatusBadRequest)
