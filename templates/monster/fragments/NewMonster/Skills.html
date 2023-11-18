@@ -1,11 +1,11 @@
 <article>
   <div class="flex gap-4 items-center mb-4">
     <div class="text-field mr-auto w-full">
-      <label for="skill{{ .current }}">Nom</label>
+      <label for="SpecialTraits{{ .current }}">Nom</label>
       <input
         type="text"
-        name="skill"
-        id="skill{{ .current }}"
+        name="SpecialTraits.{{ .current }}.Name"
+        id="SpecialTraits{{ .current }}"
         hx-post="/"
         hx-trigger="input"
         hx-target="#oui"
@@ -27,10 +27,10 @@
     </button>
   </div>
   <div class="text-field mb-4">
-    <label for="description{{ .current }}">Description</label>
+    <label for="Description{{ .current }}">Description</label>
     <textarea
-      name="description"
-      id="description{{ .current }}"
+      name="SpecialTraits.{{ .current }}.Description"
+      id="Description{{ .current }}"
       hx-post="/"
       hx-trigger="input"
       hx-target="#oui"

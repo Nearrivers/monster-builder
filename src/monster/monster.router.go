@@ -7,7 +7,9 @@ func ConfigureRoutes(r *httprouter.Router) {
 	r.GET("/monster/new", getNewMonsterTemplate)
 	r.GET("/monster/new/stats", getNewMonsterStats)
 	r.GET("/monster/new/skills/:id", getNewMonsterSkills)
-	r.GET("/monster/new/actions/:id", getNewMonsterActions)
+	r.GET("/monster/new/actions/:id/:type", getNewMonsterActions)
+
+	r.POST("/monster/new", createMonster)
 
 	r.DELETE("/monster/new/skills", deleteCurrentAbility)
 	r.DELETE("/monster/new/actions", deleteCurrentAbility)

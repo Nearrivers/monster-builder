@@ -71,7 +71,7 @@
   <input
     type="text"
     name="Alignment"
-    id="Taille"
+    id="Alignment"
     hx-post="/"
     hx-trigger="input"
     hx-target="#oui"
@@ -122,8 +122,8 @@
     class="w-full"
   >
 </div>
-<div class="text-field">
-  <label for="Speed">Vitesse</label>
+<div class="text-field col-span-2">
+  <label for="Speed">Vitesse (en mètres)</label>
   <input
     type="text"
     name="Speed"
@@ -136,90 +136,103 @@
     class="w-full"
   >
 </div>
-<div class="text-field">
-  <label for="Strength">For</label>
-  <input
-    type="number"
-    min="0"
-    max="20"
-    step="1"
-    name="Strength"
-    id="Strength"
-    hx-post="/"
-    hx-trigger="input"
-    hx-target="#oui"
-    hx-swap="innerHTML"
-    placeholder=" "
-    class="w-full"
-  >
-</div>
-<div class="text-field">
-  <label for="Dexterity">Dex</label>
-  <input
-    type="number"
-    min="0"
-    max="20"
-    step="1"
-    name="Dexterity"
-    id="Dexterity"
-    hx-post="/"
-    hx-trigger="input"
-    hx-target="#oui"
-    hx-swap="innerHTML"
-    placeholder=" "
-    class="w-full"
-  >
-</div>
-<div class="text-field">
-  <label for="Constitution">Con</label>
-  <input
-    type="number"
-    min="0"
-    max="20"
-    step="1"
-    name="Constitution"
-    id="Constitution"
-    hx-post="/"
-    hx-trigger="input"
-    hx-target="#oui"
-    hx-swap="innerHTML"
-    placeholder=" "
-    class="w-full"
-  >
-</div>
-<div class="text-field">
-  <label for="Intelligence">Int</label>
-  <input
-    type="number"
-    min="0"
-    max="20"
-    step="1"
-    name="Intelligence"
-    id="Intelligence"
-    hx-post="/"
-    hx-trigger="input"
-    hx-target="#oui"
-    hx-swap="innerHTML"
-    placeholder=" "
-    class="w-full"
-  >
-</div>
-<div class="text-field">
-  <label for="Charisma">Cha</label>
-  <input
-    type="number"
-    min="0"
-    max="20"
-    step="1"
-    name="Charisma"
-    id="Charisma"
-    hx-post="/"
-    hx-trigger="input"
-    hx-target="#oui"
-    hx-swap="innerHTML"
-    placeholder=" "
-    class="w-full"
-  >
+<div class="col-span-full flex flex-wrap justify-around">
+  <div class="text-field">
+    <label for="Strength">For</label>
+    <input
+      type="number"
+      min="0"
+      max="20"
+      step="1"
+      name="Strength"
+      id="Strength"
+      hx-post="/"
+      hx-trigger="input"
+      hx-target="#oui"
+      hx-swap="innerHTML"
+      placeholder=" "
+    >
+  </div>
+  <div class="text-field">
+    <label for="Dexterity">Dex</label>
+    <input
+      type="number"
+      min="0"
+      max="20"
+      step="1"
+      name="Dexterity"
+      id="Dexterity"
+      hx-post="/"
+      hx-trigger="input"
+      hx-target="#oui"
+      hx-swap="innerHTML"
+      placeholder=" "
+    >
+  </div>
+  <div class="text-field">
+    <label for="Constitution">Con</label>
+    <input
+      type="number"
+      min="0"
+      max="20"
+      step="1"
+      name="Constitution"
+      id="Constitution"
+      hx-post="/"
+      hx-trigger="input"
+      hx-target="#oui"
+      hx-swap="innerHTML"
+      placeholder=" "
+    >
+  </div>
+  <div class="text-field">
+    <label for="Intelligence">Int</label>
+    <input
+      type="number"
+      min="0"
+      max="20"
+      step="1"
+      name="Intelligence"
+      id="Intelligence"
+      hx-post="/"
+      hx-trigger="input"
+      hx-target="#oui"
+      hx-swap="innerHTML"
+      placeholder=" "
+    >
+  </div>
+  <div class="text-field">
+    <label for="Wisdom">Sag</label>
+    <input
+      type="number"
+      min="0"
+      max="20"
+      step="1"
+      name="Wisdom"
+      id="Wisdom"
+      hx-post="/"
+      hx-trigger="input"
+      hx-target="#oui"
+      hx-swap="innerHTML"
+      placeholder=" "
+    >
+  </div>
+  <div class="text-field">
+    <label for="Charisma">Cha</label>
+    <input
+      type="number"
+      min="0"
+      max="20"
+      step="1"
+      name="Charisma"
+      id="Charisma"
+      hx-post="/"
+      hx-trigger="input"
+      hx-target="#oui"
+      hx-swap="innerHTML"
+      placeholder=" "
+    >
+  </div>
 </div>
 <div class="text-field col-span-2">
   <label for="SavingThrows">Jets de sauvegarde</label>
@@ -305,7 +318,7 @@
     class="w-full"
   >
 </div>
-<div class="text-field col-span-full">
+<div class="text-field col-span-3">
   <label for="Senses">Sens</label>
   <input
     type="text"
@@ -318,4 +331,76 @@
     placeholder=" "
     class="w-full"
   >
+</div>
+<div class="text-field col-span-2">
+  <label for="PassivePerception">Perception passive</label>
+  <input
+    type="text"
+    name="PassivePerception"
+    id="PassivePerception"
+    hx-post="/"
+    hx-trigger="input"
+    hx-target="#oui"
+    hx-swap="innerHTML"
+    placeholder=" "
+    class="w-full"
+  >
+</div>
+<div class="text-field col-span-3">
+  <label for="Languages">Langues</label>
+  <input
+    type="text"
+    name="Languages"
+    id="Languages"
+    hx-post="/"
+    hx-trigger="input"
+    hx-target="#oui"
+    hx-swap="innerHTML"
+    placeholder=" "
+    class="w-full"
+  >
+</div>
+<div class="text-field col-span-2">
+  <label for="Challenge">Puissance</label>
+  <input
+    type="text"
+    name="Challenge"
+    id="Challenge"
+    hx-post="/"
+    hx-trigger="input"
+    hx-target="#oui"
+    hx-swap="innerHTML"
+    placeholder=" "
+    class="w-full"
+  >
+</div>
+<div class="text-field col-span-2">
+  <label for="MasteryBonus">Bonus de maîtrise</label>
+  <input
+    type="text"
+    name="MasteryBonus"
+    id="MasteryBonus"
+    hx-post="/"
+    hx-trigger="input"
+    hx-target="#oui"
+    hx-swap="innerHTML"
+    placeholder=" "
+    class="w-full"
+  >
+</div>
+<div class="text-field col-span-full">
+  <label for="Description">
+    Description de la créature
+  </label>
+  <textarea
+    name="Description"
+    id="Description"
+    hx-post="/"
+    hx-trigger="input"
+    hx-target="#oui"
+    hx-swap="innerHTML"
+    placeholder=" "
+    class="w-full"
+    rows="8"
+  ></textarea>
 </div>

@@ -21,7 +21,9 @@
         }
     }
 
-    input, select, textarea {
+    input,
+    select,
+    textarea {
         border-radius: 4px;
         border: 1px solid theme('colors.accent.3');
         font-size: 16px;
@@ -32,7 +34,8 @@
         z-index: 1;
     }
 
-    input, select {
+    input,
+    select {
         height: 40px;
     }
 
@@ -48,7 +51,9 @@
         cursor: text;
     }
 
-    input:focus, select:focus, textarea:focus {
+    input:focus,
+    select:focus,
+    textarea:focus {
         outline: none;
     }
 
@@ -62,7 +67,7 @@
     .btn {
         padding: 5px 15px;
         height: 34px;
-        @apply font-medium rounded-3xl
+        @apply font-medium rounded-lg
     }
 
     .btn-filled {
@@ -88,9 +93,9 @@
             top: 50%;
             left: 10px;
             padding: 0 10px;
-            opacity: .8;
+            opacity: .6;
             transform: translateY(-50%);
-            color: theme('colors.accent.3');
+            color: theme('colors.content');
             transition: all .2s ease;
             backface-visibility: hidden;
             transform-origin: left;
@@ -118,7 +123,7 @@
         border: 1px solid theme('colors.accent.4');
     }
 
-    .text-field:has(input:not(:placeholder-shown)) label, 
+    .text-field:has(input:not(:placeholder-shown)) label,
     .text-field:has(textarea:not(:placeholder-shown)) label {
         top: -11px;
         left: 12px;

@@ -1,11 +1,13 @@
 <article>
   <div class="flex gap-4 items-center mb-4">
     <div class="text-field mr-auto w-full">
-      <label for="Action{{ .current }}">Nom</label>
+      <label for="Action-{{ .type }}-{{ .current }}">
+        Nom
+      </label>
       <input
         type="text"
-        name="Action"
-        id="Action{{ .current }}"
+        name="{{ .type }}.{{ .current }}.Name"
+        id="Action-{{ .type }}-{{ .current }}"
         hx-post="/"
         hx-trigger="input"
         hx-target="#oui"
@@ -27,10 +29,12 @@
     </button>
   </div>
   <div class="text-field mb-4">
-    <label for="Description{{ .current }}">Description</label>
+    <label for="Description-{{ .type }}-{{ .current }}">
+      Description
+    </label>
     <textarea
-      name="Description"
-      id="Description{{ .current }}"
+      name="{{ .type }}.{{ .current }}.Description"
+      id="Description-{{ .type }}-{{ .current }}"
       hx-post="/"
       hx-trigger="input"
       hx-target="#oui"
@@ -43,7 +47,7 @@
 </article>
 <button
   class="btn btn-filled flex"
-  hx-get="/monster/new/actions/{{ .next }}"
+  hx-get="/monster/new/actions/{{ .next }}/{{ .type }}"
   hx-swap="outerHTML"
 >
   <span class="material-symbols-outlined">

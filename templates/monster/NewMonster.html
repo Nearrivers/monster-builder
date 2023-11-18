@@ -9,110 +9,128 @@
         <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined" rel="stylesheet" />
         <script type="text/javascript" src="/scripts/htmx.min.js"></script>
     </head>
-    <body class="p-4">
-        <h1 class="text-xl pt-4 pb-8 font-bold">Créer un nouveau monstre</h1>
-        <main class="flex flex-col lg:flex-row gap-4">
-            <section class="flex-1">
-              <form>
-                <div class="text-field mb-4">
-                  <label for="Name">Nom de la créature</label>
-                  <input
-                    type="text"
-                    name="Name"
-                    id="Name"
-                    hx-post="/"
-                    hx-trigger="input"
-                    hx-target="#oui"
-                    hx-swap="innerHTML"
-                    placeholder=" "
-                    class="w-full"
-                  >
-                </div>
-
-                <!-- Stats -->
-                <h2 class="my-4 p-4 text-lg font-medium bg-accent-2 rounded-lg">
-                  Stats
-                </h2>
-                <div
-                  class="grid gap-4 grid-cols-form-layout"
-                  hx-get="/monster/new/stats"
-                  hx-swap="innerHTML"
-                  hx-trigger="load"
-                ></div>
-
-                <!-- Compétences -->
-                <h2 class="my-4 p-4 text-lg font-medium bg-accent-2 rounded-lg">
-                  Compétences
-                </h2>
-                <div
-                  hx-get="/monster/new/skills/1"
-                  hx-swap="innerHTML"
-                  hx-trigger="load"
-                ></div>
-
-                <!-- Actions -->
-                <h2 class="my-4 p-4 text-lg font-medium bg-accent-2 rounded-lg">
-                  Actions
-                </h2>
-                <div
-                  hx-get="/monster/new/actions/1"
-                  hx-swap="innerHTML"
-                  hx-trigger="load"
-                ></div>
-
-                <!-- Actions bonus -->
-                <h2 class="my-4 p-4 text-lg font-medium bg-accent-2 rounded-lg">
-                  Actions bonus
-                </h2>
-                <div
-                  hx-get="/monster/new/actions/1"
-                  hx-swap="innerHTML"
-                  hx-trigger="load"
-                ></div>
-
-                <!-- Actions bonus -->
-                <h2 class="my-4 p-4 text-lg font-medium bg-accent-2 rounded-lg">
-                  Actions bonus
-                </h2>
-                <div
-                  hx-get="/monster/new/actions/1"
-                  hx-swap="innerHTML"
-                  hx-trigger="load"
-                ></div>
-
-                <!-- Actions légendaires -->
-                <h2 class="my-4 p-4 text-lg font-medium bg-accent-2 rounded-lg">
-                  Actions légendaires
-                </h2>
-                <div
-                  hx-get="/monster/new/actions/1"
-                  hx-swap="innerHTML"
-                  hx-trigger="load"
-                ></div>
-
-                <div class="text-field">
-                  <label for="Description{{ .current }}">Description de la créature</label>
-                  <textarea
-                    name="Description"
-                    id="Description"
-                    hx-post="/"
-                    hx-trigger="input"
-                    hx-target="#oui"
-                    hx-swap="innerHTML"
-                    placeholder=" "
-                    class="w-full"
-                    rows="8"
-                  ></textarea>
-                </div>
-              </form>
-            </section>
-            <section
-              class="flex-1"
-              hx-get="/test"
-              hx-trigger="load"
-              hx-swap="innerHTML"
+    <body>
+        <header class="flex items-center border-b-2 border-accent-3 py-4 sticky top-0 bg-accent-1 z-10">
+          <h1 class="text-xl font-bold w-max ml-4 mr-auto">Créer un nouveau monstre</h1>
+          <button
+            class="bg-accent-4 rounded-lg text-accent-1 flex gap-2 items-center py-2 px-4 mr-4"
+            form="new-monster"
+          >
+            <span class="material-symbols-outlined">
+              save
+            </span>
+            <p class="font-medium">Enregistrer</p>
+          </button>
+        </header>
+        <main class="flex flex-col lg:flex-row gap-4 p-4">
+          <section class="flex-1">
+            <form id="new-monster" hx-post="/monster/new">
+              <select
+                name="Campaign"
+                id="campaign"
+                class="mb-4"
+                hx-get="/campaign/monster/new"
+                hx-swap="#base-campaign"
+                hx-trigger="load"
               >
-            </section> 
+                {{ block "campaign-select" . }}
+                  <option
+                    id="base-campaign"
+                    value=""
+                    selected
+                    disabled
+                  >
+                    Sélectionnez la campagne du monstre
+                  </option>
+                  {{ range .Campaigns }}
+                    <option value="{{ .ID }}">{{ .Name }}</option>
+                  {{ end }}
+                {{ end }}
+              </select>
+              <div class="text-field mb-4">
+                <label for="Name">Nom de la créature</label>
+                <input
+                  type="text"
+                  name="Name"
+                  id="Name"
+                  hx-post="/"
+                  hx-trigger="input"
+                  hx-target="#oui"
+                  hx-swap="innerHTML"
+                  placeholder=" "
+                  class="w-full"
+                >
+              </div>
+
+              <!-- Stats -->
+              <h2 class="my-4 p-4 text-lg font-medium bg-accent-2 rounded-lg">
+                Stats
+              </h2>
+              <div
+                class="grid gap-4 grid-cols-form-layout"
+                hx-get="/monster/new/stats"
+                hx-swap="innerHTML"
+                hx-trigger="load"
+              ></div>
+
+              <!-- Compétences -->
+              <h2 class="my-4 p-4 text-lg font-medium bg-accent-2 rounded-lg">
+                Compétences
+              </h2>
+              <div
+                hx-get="/monster/new/skills/0"
+                hx-swap="innerHTML"
+                hx-trigger="load"
+              ></div>
+
+              <!-- Actions -->
+              <h2 class="my-4 p-4 text-lg font-medium bg-accent-2 rounded-lg">
+                Actions
+              </h2>
+              <div
+                hx-get="/monster/new/actions/0/Actions"
+                hx-swap="innerHTML"
+                hx-trigger="load"
+              ></div>
+
+              <!-- Actions bonus -->
+              <h2 class="my-4 p-4 text-lg font-medium bg-accent-2 rounded-lg">
+                Actions bonus
+              </h2>
+              <div
+                hx-get="/monster/new/actions/0/BonusActions"
+                hx-swap="innerHTML"
+                hx-trigger="load"
+              ></div>
+
+              <!-- Réaction -->
+              <h2 class="my-4 p-4 text-lg font-medium bg-accent-2 rounded-lg">
+                Réaction
+              </h2>
+              <div
+                hx-get="/monster/new/actions/0/Reactions"
+                hx-swap="innerHTML"
+                hx-trigger="load"
+              ></div>
+
+              <!-- Actions légendaires -->
+              <h2 class="my-4 p-4 text-lg font-medium bg-accent-2 rounded-lg">
+                Actions légendaires
+              </h2>
+              <div
+                hx-get="/monster/new/actions/0/LegendaryActions"
+                hx-swap="innerHTML"
+                hx-trigger="load"
+              ></div>
+            </form>
+          </section>
+          <section
+            class="flex-1"
+            hx-get="/test"
+            hx-trigger="load"
+            hx-swap="innerHTML"
+            >
+          </section>
         </main>
     </body>
 </html>

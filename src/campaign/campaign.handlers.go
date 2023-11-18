@@ -27,19 +27,32 @@ func GetAllCampaigns(w http.ResponseWriter, r *http.Request, _ httprouter.Params
 	}
 
 	if length := len(campaigns); length == 0 {
-		htmlStr := "<p>Aucune campagne n'a été trouvée</p>"
-		tmpl, err := template.New("Not found").Parse(htmlStr)
-
-		if err != nil {
-			panic(err)
-		}
-
-		tmpl.Execute(w, nil)
-	} else {
-		tD.Campaigns = campaigns
-		t := template.Must(template.ParseFiles(filepath.Join(fileBasePath, "AllCampaigns.html")))
-		t.Execute(w, tD)
+		http.Error(w, "Aucune campagne trouvée", http.StatusNotFound)
+		return
 	}
+
+	tD.Campaigns = campaigns
+	t := template.Must(template.ParseFiles(filepath.Join(fileBasePath, "AllCampaigns.html")))
+	t.Execute(w, tD)
+}
+
+func GetAllCampaignsSelect(w http.ResponseWriter, r *http.Request, _ httprouter.Params) {
+	t := template.Must(template.ParseFiles("./templates/monster/NewMonster.html"))
+	var tD templateData
+	var campaigns []models.Campaign
+	db := db.GetDbConnection()
+
+	if result := db.Find(&campaigns); result.Error != nil {
+		http.Error(w, "Une erreur est survenue :"+result.Error.Error(), http.StatusInternalServerError)
+	}
+
+	if length := len(campaigns); length == 0 {
+		http.Error(w, "Aucune campagne trouvée", http.StatusNotFound)
+		return
+	}
+
+	tD.Campaigns = campaigns
+	t.ExecuteTemplate(w, "campaign-select", tD)
 }
 
 func GetOneCampaign(w http.ResponseWriter, r *http.Request, ps httprouter.Params) {
