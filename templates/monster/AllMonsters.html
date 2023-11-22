@@ -1,0 +1,26 @@
+<section class="grid grid-cols-3 gap-4">
+  <!-- Liste des monstres -->
+  {{ range .Monsters }}
+    <article class="border border-accent-2 p-2 rounded-lg h-min w-80" id="Monster-{{ .ID }}">
+      <footer class="flex justify-between items-center">
+        <hgroup class="w-max">
+          <h3 class="font-semibold text-lg">{{ .Name }}</h3>
+          <p class="font-light"><i>{{ .Type }} ({{ .SubType }})</i></p>
+        </hgroup>
+        <div class="text-sm h-min flex gap-2">
+          <span
+            class="material-symbols-outlined icon-thin cursor-pointer"
+            hx-get="/monster/edit/{{ .ID }}"
+            hx-target="body"
+            hx-push-url="true"
+          >
+            edit
+          </span>
+          <span class="material-symbols-outlined icon-thin cursor-pointer">
+            delete
+          </span>
+        </div>
+      </footer>
+    </article>
+  {{ end }}
+</section>

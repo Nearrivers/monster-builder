@@ -3,7 +3,6 @@ package campaign
 import (
 	"fmt"
 	"html/template"
-	"nearrivers/monster-creator/src/db"
 	"nearrivers/monster-creator/src/models"
 	"net/http"
 	"path/filepath"
@@ -17,18 +16,13 @@ type templateData struct {
 
 const fileBasePath = "./templates/campaign/"
 
-func GetAllCampaigns(w http.ResponseWriter, r *http.Request, _ httprouter.Params) {
+func GetAllCampaignsTemplate(w http.ResponseWriter, r *http.Request, _ httprouter.Params) {
 	var tD templateData
 	var campaigns []models.Campaign
-	db := db.GetDbConnection()
+	campaigns, err := GetAllCampaigns()
 
-	if result := db.Find(&campaigns); result.Error != nil {
-		fmt.Println(result.Error)
-	}
-
-	if length := len(campaigns); length == 0 {
+	if err != nil {
 		http.Error(w, "Aucune campagne trouvée", http.StatusNotFound)
-		return
 	}
 
 	tD.Campaigns = campaigns
@@ -39,16 +33,10 @@ func GetAllCampaigns(w http.ResponseWriter, r *http.Request, _ httprouter.Params
 func GetAllCampaignsSelect(w http.ResponseWriter, r *http.Request, _ httprouter.Params) {
 	t := template.Must(template.ParseFiles("./templates/monster/NewMonster.html"))
 	var tD templateData
-	var campaigns []models.Campaign
-	db := db.GetDbConnection()
+	campaigns, err := GetAllCampaigns()
 
-	if result := db.Find(&campaigns); result.Error != nil {
-		http.Error(w, "Une erreur est survenue :"+result.Error.Error(), http.StatusInternalServerError)
-	}
-
-	if length := len(campaigns); length == 0 {
+	if err != nil {
 		http.Error(w, "Aucune campagne trouvée", http.StatusNotFound)
-		return
 	}
 
 	tD.Campaigns = campaigns

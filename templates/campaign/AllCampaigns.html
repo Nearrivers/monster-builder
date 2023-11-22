@@ -1,13 +1,13 @@
 <aside>
-    <ul class="rounded-2xl border border-solid border-accent-2 overflow-hidden w-max">
-        <li class="p-4 bg-accent-2 text-center font-semibold">Campagnes</li>
-        {{ range .Campaigns}}
-            <li class="border-t border-accent-2 p-4 flex justify-between gap-2 cursor-pointer">
-                <p>{{ .Name }}</p>
-                <span class="material-symbols-outlined">
-                    chevron_right
-                </span>
-            </li>
-        {{ end }}
-    </ul>
+  <ul class="rounded-lg border border-solid border-accent-2 overflow-hidden w-max">
+    <li class="p-4 bg-accent-2 text-center font-semibold">Campagnes</li>
+    {{ range .Campaigns}}
+      <li class="border-t border-accent-2 p-4 flex justify-between gap-2 cursor-pointer">
+        <p>{{ .Name }}</p>
+        <span class="material-symbols-outlined">
+          chevron_right
+        </span>
+      </li>
+    {{ end }}
+  </ul>
 </aside>

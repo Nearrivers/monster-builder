@@ -4,6 +4,7 @@ import (
 	"fmt"
 	"html/template"
 	"io"
+	"nearrivers/monster-creator/src/campaign"
 	"nearrivers/monster-creator/src/db"
 	"nearrivers/monster-creator/src/models"
 	"net/http"
@@ -32,7 +33,7 @@ type actionDto struct {
 }
 
 type monsterDto struct {
-	Campaign          uint8
+	Campaign          uint
 	Name              string
 	Type              string
 	SubType           string
@@ -78,20 +79,14 @@ func getAllMonsters(w http.ResponseWriter, r *http.Request, _ httprouter.Params)
 		fmt.Println(result.Error)
 	}
 
-	if length := len(monsters); length == 0 {
-		htmlStr := "<p>Aucun monstre n'a été trouvé</p>"
-		tmpl, err := template.New("Not found").Parse(htmlStr)
-
-		if err != nil {
-			panic(err)
-		}
-
-		tmpl.Execute(w, nil)
-	} else {
-		tD.Monsters = monsters
-		t := template.Must(template.ParseFiles(filepath.Join(fileBasePath, "AllMonsters.html")))
-		t.Execute(w, tD)
+	if len(monsters) == 0 {
+		http.Error(w, "Aucun monstre trouvé", http.StatusNotFound)
+		return
 	}
+
+	tD.Monsters = monsters
+	t := template.Must(template.ParseFiles(filepath.Join(fileBasePath, "AllMonsters.html")))
+	t.Execute(w, tD)
 }
 
 func getNewMonsterTemplate(w http.ResponseWriter, r *http.Request, _ httprouter.Params) {
@@ -158,6 +153,7 @@ func createMonster(w http.ResponseWriter, r *http.Request, _ httprouter.Params) 
 	var monsterEntity models.Monster
 	db := db.GetDbConnection()
 
+	monsterEntity.CampaignID = monster.Campaign
 	monsterEntity.Name = monster.Name
 	monsterEntity.Type = monster.Type
 	monsterEntity.SubType = monster.SubType
@@ -258,6 +254,38 @@ func createMonster(w http.ResponseWriter, r *http.Request, _ httprouter.Params) 
 	}
 
 	fmt.Println("Monstre créé")
+}
+
+func editMonsterTemplate(w http.ResponseWriter, r *http.Request, ps httprouter.Params) {
+	skillId, err := strconv.Atoi(ps.ByName("id"))
+
+	if err != nil {
+		w.WriteHeader(http.StatusBadRequest)
+	}
+
+	var monster models.Monster
+	db := db.GetDbConnection()
+
+	if result := db.Where("ID = ?", skillId).First(&monster); result.Error != nil {
+		fmt.Println(result.Error)
+	}
+
+	campaigns, err := campaign.GetAllCampaigns()
+
+	if err != nil {
+		http.Error(w, err.Error(), http.StatusNotFound)
+	}
+
+	data := map[string]interface{}{
+		"current":   skillId,
+		"next":      skillId + 1,
+		"Monster":   monster,
+		"Campaigns": campaigns,
+	}
+
+	fmt.Print(campaigns[0].Name)
+	t := template.Must(template.ParseFiles(filepath.Join(fileBasePath, "EditMonster.html")))
+	t.Execute(w, data)
 }
 
 func deleteCurrentAbility(w http.ResponseWriter, r *http.Request, ps httprouter.Params) {

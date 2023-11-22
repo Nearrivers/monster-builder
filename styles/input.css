@@ -3,133 +3,140 @@
 @tailwind utilities;
 
 @layer base {
+  :root {
+    --color-accent1: 255 252 245;
+    --color-accent2: 244 241 228;
+    --color-accent3: 230 227 209;
+    --color-accent4: 97 98 0;
+    --color-content: 28 28 22;
+  }
+
+  @media (prefers-color-scheme:dark) {
     :root {
-        --color-accent1: 255 252 245;
-        --color-accent2: 244 241 228;
-        --color-accent3: 230 227 209;
-        --color-accent4: 97 98 0;
-        --color-content: 28 28 22;
+      --color-accent1: 28 28 22;
+      --color-accent2: 40 40 28;
+      --color-accent3: 116 119 117;
+      --color-accent4: 203 204 88;
+      --color-content: 255 252 245;
     }
+  }
 
-    @media (prefers-color-scheme:dark) {
-        :root {
-            --color-accent1: 28 28 22;
-            --color-accent2: 40 40 28;
-            --color-accent3: 116 119 117;
-            --color-accent4: 203 204 88;
-            --color-content: 255 252 245;
-        }
-    }
+  input,
+  select,
+  textarea {
+    border-radius: 4px;
+    border: 1px solid theme('colors.accent.3');
+    font-size: 16px;
+    transition: all .1s;
+    color: theme('colors.content');
+    background-color: transparent;
+    padding-left: 1.2rem;
+    z-index: 1;
+  }
 
-    input,
-    select,
-    textarea {
-        border-radius: 4px;
-        border: 1px solid theme('colors.accent.3');
-        font-size: 16px;
-        transition: all .1s;
-        color: theme('colors.content');
-        background-color: transparent;
-        padding-left: 1.2rem;
-        z-index: 1;
-    }
+  input,
+  select {
+    height: 40px;
+  }
 
-    input,
-    select {
-        height: 40px;
-    }
+  textarea {
+    padding-top: 5px;
+  }
 
-    textarea {
-        padding-top: 5px;
-    }
+  select {
+    cursor: pointer;
+  }
 
-    select {
-        cursor: pointer;
-    }
+  label {
+    cursor: text;
+  }
 
-    label {
-        cursor: text;
-    }
+  input:focus,
+  select:focus,
+  textarea:focus {
+    outline: none;
+  }
 
-    input:focus,
-    select:focus,
-    textarea:focus {
-        outline: none;
-    }
-
-    option {
-        background-color: theme('colors.accent.1');
-        cursor: pointer;
-    }
+  option {
+    background-color: theme('colors.accent.1');
+    cursor: pointer;
+  }
 }
 
 @layer components {
-    .btn {
-        padding: 5px 15px;
-        height: 34px;
-        @apply font-medium rounded-lg
+  .icon-thin {
+    font-variation-settings:
+      'FILL' 0,
+      'wght' 300,
+      'GRAD' 0,
+      'opsz' 24
+  }
+
+  .btn {
+    padding: 5px 15px;
+    height: 34px;
+    @apply font-medium rounded-lg
+  }
+
+  .btn-filled {
+    background-color: theme('colors.accent.4');
+    color: theme('colors.accent.1');
+  }
+
+  .btn-outlined {
+    & span {
+      font-size: 20px;
     }
 
-    .btn-filled {
-        background-color: theme('colors.accent.4');
-        color: theme('colors.accent.1');
+    @apply border border-red-500 text-red-500 font-normal
+  }
+
+  .text-field {
+    position: relative;
+
+    & label {
+      position: absolute;
+      display: block;
+      top: 50%;
+      left: 10px;
+      padding: 0 10px;
+      opacity: .6;
+      transform: translateY(-50%);
+      color: theme('colors.content');
+      transition: all .2s ease;
+      backface-visibility: hidden;
+      transform-origin: left;
     }
 
-    .btn-outlined {
-
-        & span {
-            font-size: 20px;
-        }
-
-        @apply border border-red-500 text-red-500 font-normal
+    & input:focus,
+    & textarea:focus {
+      border: 1px solid theme('colors.accent.4');
     }
 
-    .text-field {
-        position: relative;
-
-        & label {
-            position: absolute;
-            display: block;
-            top: 50%;
-            left: 10px;
-            padding: 0 10px;
-            opacity: .6;
-            transform: translateY(-50%);
-            color: theme('colors.content');
-            transition: all .2s ease;
-            backface-visibility: hidden;
-            transform-origin: left;
-        }
-
-        & input:focus,
-        & textarea:focus {
-            border: 1px solid theme('colors.accent.4');
-        }
-
-        &:has(input:focus) label,
-        &:has(textarea:focus) label {
-            top: -11px;
-            left: 12px;
-            color: theme('colors.accent.4');
-            background-color: theme('colors.accent.1');
-            transform: scale(.7);
-            opacity: 1;
-        }
+    &:has(input:focus) label,
+    &:has(textarea:focus) label {
+      top: -11px;
+      left: 12px;
+      color: theme('colors.accent.4');
+      background-color: theme('colors.accent.1');
+      transform: scale(.7);
+      opacity: 1;
     }
+  }
 
-    .text-field input:not(:placeholder-shown),
-    .text-field textarea:not(:placeholder-shown) {
-        outline: 0;
-        border: 1px solid theme('colors.accent.4');
-    }
+  .text-field input:not(:placeholder-shown),
+  .text-field textarea:not(:placeholder-shown) {
+    outline: 0;
+    border: 1px solid theme('colors.accent.4');
+  }
 
-    .text-field:has(input:not(:placeholder-shown)) label,
-    .text-field:has(textarea:not(:placeholder-shown)) label {
-        top: -11px;
-        left: 12px;
-        color: theme('colors.accent.4');
-        background-color: theme('colors.accent.1');
-        transform: scale(.7);
-        opacity: 1;
-    }
+  .text-field:has(input:not(:placeholder-shown)) label,
+  .text-field:has(textarea:not(:placeholder-shown)) label {
+    top: -11px;
+    left: 12px;
+    color: theme('colors.accent.4');
+    background-color: theme('colors.accent.1');
+    transform: scale(.7);
+    opacity: 1;
+  }
 }

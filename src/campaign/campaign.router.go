@@ -5,9 +5,10 @@ import (
 )
 
 func ConfigureRoutes(r *httprouter.Router) {
-	r.GET("/campaign/list", GetAllCampaigns)
+	r.GET("/campaign/list", GetAllCampaignsTemplate)
 	r.GET("/campaign/list/:id", GetOneCampaign)
 	r.GET("/campaign/monster/new", GetAllCampaignsSelect)
+	r.GET("/campaign/monster/edit", GetAllCampaignsSelect)
 
 	r.POST("/campaign", CreateCampaign)
 

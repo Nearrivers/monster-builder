@@ -1,31 +1,32 @@
 <!DOCTYPE html>
 <html lang="fr" class="bg-accent-1 text-content">
-    <head>
-        <meta charset="utf-8">
-        <meta http-equiv="X-UA-Compatible" content="IE=edge">
-        <title>Créateur de monstre DnD</title>
-        <meta name="viewport" content="width=device-width, initial-scale=1">
-        <link href="styles/output.css" rel="stylesheet">
-        <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined" rel="stylesheet" />
-        <script type="text/javascript" src="scripts/htmx.min.js"></script>
-    </head>
-    <body class="p-4">
-        <h1 class="text-xl pt-4 pb-8">Créateur de Monstres DnD</h1>
-        <main class="flex gap-4">
-            <span hx-get="/campaign" hx-trigger="load" hx-swap="outerHTML"></span>
-            <section>
-                <a
-                    hx-get="/monster/new"
-                    class="bg-accent-4 px-3 py-4 rounded-xl flex gap-4 text-accent-1 font-medium cursor-pointer"
-                    hx-target="body"
-                    hx-push-url="true"
-                >
-                    <span class="material-symbols-outlined">
-                        edit
-                    </span>
-                    Nouveau monstre
-                </a>
-            </section>
-        </main>
-    </body>
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>Créateur de monstre DnD</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link href="styles/output.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" />
+    <script type="text/javascript" src="scripts/htmx.min.js"></script>
+  </head>
+  <body>
+    <header class="flex justify-between p-4 items-center">
+      <h1 class="text-xl">Créateur de Monstres DnD</h1>
+      <button
+        hx-get="/monster/new"
+        class="bg-accent-4 px-3 py-4 rounded-lg flex gap-4 text-accent-1 font-medium h-max"
+        hx-target="body"
+        hx-push-url="true"
+      >
+        <span class="material-symbols-outlined">
+          edit
+        </span>
+        <p>Nouveau monstre</p>
+      </button>
+    </header>
+    <main class="flex gap-4 px-4">
+      <span hx-get="/campaign/list" hx-trigger="load" hx-swap="outerHTML"></span>
+      <span hx-get="/monster/list" hx-trigger="load" hx-swap="outerHTML"></span>
+    </main>
+  </body>
 </html>
