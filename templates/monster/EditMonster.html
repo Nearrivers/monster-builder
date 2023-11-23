@@ -30,6 +30,9 @@
                 id="campaign"
                 class="mb-4"
               >
+              <!-- Lorsque que l'on parcourt un tableau via range
+                mais que l'on veut accéder à une autre variable du template
+                alors il faut utiliser $. pour y accéder -->
                 {{ range .Campaigns }}
                   {{ if eq $.Monster.CampaignID .ID }}
                     <option value="{{ .ID }}" selected>{{ .Name }}</option>
@@ -64,7 +67,7 @@
               </h2>
               <div
                 class="grid gap-4 grid-cols-form-layout"
-                hx-get="/monster/edit/{{ .Monster.ID }}/stats"
+                hx-get="/monster/stats/edit/{{ .Monster.ID }}"
                 hx-swap="innerHTML"
                 hx-trigger="load"
               ></div>

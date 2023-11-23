@@ -283,8 +283,30 @@ func editMonsterTemplate(w http.ResponseWriter, r *http.Request, ps httprouter.P
 		"Campaigns": campaigns,
 	}
 
-	fmt.Print(campaigns[0].Name)
 	t := template.Must(template.ParseFiles(filepath.Join(fileBasePath, "EditMonster.html")))
+	t.Execute(w, data)
+}
+
+func editMonsterStats(w http.ResponseWriter, r *http.Request, ps httprouter.Params) {
+	monsterId, err := strconv.Atoi(ps.ByName("id"))
+
+	if err != nil {
+		http.Error(w, err.Error(), http.StatusBadRequest)
+		return
+	}
+
+	var monster models.Monster
+	db := db.GetDbConnection()
+
+	if result := db.Where("ID = ?", monsterId).First(&monster); result.Error != nil {
+		fmt.Println(result.Error)
+	}
+
+	data := map[string]interface{}{
+		"Monster": monster,
+	}
+
+	t := template.Must(template.ParseFiles(filepath.Join(fileBasePath, "/fragments/EditMonster/Stats.html")))
 	t.Execute(w, data)
 }
 

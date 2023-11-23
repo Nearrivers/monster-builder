@@ -16,7 +16,7 @@
     </div>
     <button
       class="btn btn-outlined flex gap-2 items-center transition-transform hover:scale-105"
-      hx-delete="/monster/skills/new"
+      hx-delete="/monster/new/skills"
       hx-target="closest article"
       hx-swap="outerHTML"
     >
@@ -43,7 +43,7 @@
 </article>
 <button
   class="btn btn-filled flex"
-  hx-get="/monster/skills/new/{{ .next }}"
+  hx-get="/monster/new/skills/{{ .next }}"
   hx-swap="outerHTML"
 >
   <span class="material-symbols-outlined">

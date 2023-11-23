@@ -1,0 +1,430 @@
+<div class="text-field row-start-2 col-span-3">
+  <label for="Type">Type</label>
+  <input
+    type="text"
+    name="Type"
+    id="Type"
+    hx-post="/"
+    hx-trigger="input"
+    hx-target="#oui"
+    hx-swap="innerHTML"
+    placeholder=" "
+    class="w-full"
+    list="type"
+    value="{{ .Monster.Type }}"
+  >
+  <datalist id="type">
+    <option value="Humanoïde">Humanoïde</option>
+    <option value="Aberration">Aberration</option>
+    <option value="Artificiel">Artificiel</option>
+    <option value="Bête">Bête</option>
+    <option value="Céleste">Céleste</option>
+    <option value="Dragon">Dragon</option>
+    <option value="Élémentaire">Élémentaire</option>
+    <option value="Fée">Fée</option>
+    <option value="Fiélon">Fiélon</option>
+    <option value="Géant">Géant</option>
+    <option value="Monstruosité">Monstruosité</option>
+    <option value="Mort-vivant">Mort-vivant</option>
+    <option value="Plante">Plante</option>
+    <option value="Vase">Vase</option>
+  </datalist>
+</div>
+<div class="text-field">
+  <label for="Subtype">Sous-type</label>
+  <input
+    type="text"
+    name="Subtype"
+    id="Subtype"
+    hx-post="/"
+    hx-trigger="input"
+    hx-target="#oui"
+    hx-swap="innerHTML"
+    placeholder=" "
+    class="w-full"
+    value="{{ .Monster.SubType }}"
+  >
+</div>
+<div class="text-field col-span-2">
+  <label for="Height">Taille</label>
+  <input
+    type="text"
+    name="Height"
+    id="Height"
+    hx-post="/"
+    hx-trigger="input"
+    hx-target="#oui"
+    hx-swap="innerHTML"
+    placeholder=" "
+    class="w-full"
+    list="height"
+    value="{{ .Monster.Height }}"
+  >
+  <datalist id="height">
+    <option value="Très petit">Très petit</option>
+    <option value="Petit">Petit</option>
+    <option value="Moyen">Moyen</option>
+    <option value="Grand">Grand</option>
+    <option value="Très grand">Très grand</option>
+    <option value="Gigantesque">Gigantesque</option>
+  </datalist>
+</div>
+<div class="text-field col-span-3">
+  <label for="Alignment">Alignement</label>
+  <input
+    type="text"
+    name="Alignment"
+    id="Alignment"
+    hx-post="/"
+    hx-trigger="input"
+    hx-target="#oui"
+    hx-swap="innerHTML"
+    placeholder=" "
+    class="w-full"
+    list="alignment"
+    value="{{ .Monster.Alignment }}"
+  >
+  <datalist id="alignment">
+    <option value="" disabled selected>Sélectionnez un alignement</option>
+    <option value="Loyal Bon">Loyal Bon</option>
+    <option value="Loyal Neutre">Loyal Neutre</option>
+    <option value="Loyal Mauvais">Loyal Mauvais</option>
+    <option value="Neutre Bon">Neutre Bon</option>
+    <option value="Neutre Neutre">Neutre Neutre</option>
+    <option value="Neutre Mauvais">Neutre Mauvais</option>
+    <option value="Chaotique Bon">Chaotique Bon</option>
+    <option value="Chaotique Neutre">Chaotique Neutre</option>
+    <option value="Chaotique Mauvais">Chaotique Mauvais</option>
+    <option value="Sans alignement">Sans alignement</option>
+  </datalist>
+</div>
+<div class="text-field col-span-2">
+  <label for="ArmorClass">Classe d'armure</label>
+  <input
+    type="text"
+    name="ArmorClass"
+    id="ArmorClass"
+    hx-post="/"
+    hx-trigger="input"
+    hx-target="#oui"
+    hx-swap="innerHTML"
+    placeholder=" "
+    class="w-full"
+    value="{{ .Monster.ArmorClass }}"
+  >
+</div>
+<div class="text-field">
+  <label for="HealthPoints">Points de vie</label>
+  <input
+    type="text"
+    name="HealthPoints"
+    id="HealthPoints"
+    hx-post="/"
+    hx-trigger="input"
+    hx-target="#oui"
+    hx-swap="innerHTML"
+    placeholder=" "
+    class="w-full"
+    value="{{ .Monster.HealthPoints }}"
+  >
+</div>
+<div class="text-field col-span-2">
+  <label for="Speed">Vitesse (en mètres)</label>
+  <input
+    type="text"
+    name="Speed"
+    id="Speed"
+    hx-post="/"
+    hx-trigger="input"
+    hx-target="#oui"
+    hx-swap="innerHTML"
+    placeholder=" "
+    class="w-full"
+    value="{{ .Monster.Speed }}"
+  >
+</div>
+<div class="col-span-full flex flex-wrap justify-around">
+  <div class="text-field">
+    <label for="Strength">For</label>
+    <input
+      type="number"
+      min="0"
+      max="20"
+      step="1"
+      name="Strength"
+      id="Strength"
+      hx-post="/"
+      hx-trigger="input"
+      hx-target="#oui"
+      hx-swap="innerHTML"
+      placeholder=" "
+      value="{{ .Monster.Strength }}"
+    >
+  </div>
+  <div class="text-field">
+    <label for="Dexterity">Dex</label>
+    <input
+      type="number"
+      min="0"
+      max="20"
+      step="1"
+      name="Dexterity"
+      id="Dexterity"
+      hx-post="/"
+      hx-trigger="input"
+      hx-target="#oui"
+      hx-swap="innerHTML"
+      placeholder=" "
+      value="{{ .Monster.Dexterity }}"
+    >
+  </div>
+  <div class="text-field">
+    <label for="Constitution">Con</label>
+    <input
+      type="number"
+      min="0"
+      max="20"
+      step="1"
+      name="Constitution"
+      id="Constitution"
+      hx-post="/"
+      hx-trigger="input"
+      hx-target="#oui"
+      hx-swap="innerHTML"
+      placeholder=" "
+      value="{{ .Monster.Constitution }}"
+    >
+  </div>
+  <div class="text-field">
+    <label for="Intelligence">Int</label>
+    <input
+      type="number"
+      min="0"
+      max="20"
+      step="1"
+      name="Intelligence"
+      id="Intelligence"
+      hx-post="/"
+      hx-trigger="input"
+      hx-target="#oui"
+      hx-swap="innerHTML"
+      placeholder=" "
+      value="{{ .Monster.Intelligence }}"
+    >
+  </div>
+  <div class="text-field">
+    <label for="Wisdom">Sag</label>
+    <input
+      type="number"
+      min="0"
+      max="20"
+      step="1"
+      name="Wisdom"
+      id="Wisdom"
+      hx-post="/"
+      hx-trigger="input"
+      hx-target="#oui"
+      hx-swap="innerHTML"
+      placeholder=" "
+      value="{{ .Monster.Wisdom }}"
+    >
+  </div>
+  <div class="text-field">
+    <label for="Charisma">Cha</label>
+    <input
+      type="number"
+      min="0"
+      max="20"
+      step="1"
+      name="Charisma"
+      id="Charisma"
+      hx-post="/"
+      hx-trigger="input"
+      hx-target="#oui"
+      hx-swap="innerHTML"
+      placeholder=" "
+      value="{{ .Monster.Charisma }}"
+    >
+  </div>
+</div>
+<div class="text-field col-span-2">
+  <label for="SavingThrows">Jets de sauvegarde</label>
+  <input
+    type="text"
+    name="SavingThrows"
+    id="SavingThrows"
+    hx-post="/"
+    hx-trigger="input"
+    hx-target="#oui"
+    hx-swap="innerHTML"
+    placeholder=" "
+    class="w-full"
+    value="{{ .Monster.SavingThrows }}"
+  >
+</div>
+<div class="text-field col-span-4">
+  <label for="Skills">Compétences</label>
+  <input
+    type="text"
+    name="Skills"
+    id="Skills"
+    hx-post="/"
+    hx-trigger="input"
+    hx-target="#oui"
+    hx-swap="innerHTML"
+    placeholder=" "
+    class="w-full"
+    value="{{ .Monster.Skills }}"
+  >
+</div>
+<div class="text-field col-span-full">
+  <label for="Vulnerabilities">Vulnérabilités aux dégâts</label>
+  <input
+    type="text"
+    name="Vulnerabilities"
+    id="Vulnerabilities"
+    hx-post="/"
+    hx-trigger="input"
+    hx-target="#oui"
+    hx-swap="innerHTML"
+    placeholder=" "
+    class="w-full"
+    value="{{ .Monster.Vulnerabilities }}"
+  >
+</div>
+<div class="text-field col-span-full">
+  <label for="Resistances">Résistances aux dégâts</label>
+  <input
+    type="text"
+    name="Resistances"
+    id="Resistances"
+    hx-post="/"
+    hx-trigger="input"
+    hx-target="#oui"
+    hx-swap="innerHTML"
+    placeholder=" "
+    class="w-full"
+    value="{{ .Monster.Resistances }}"
+  >
+</div>
+<div class="text-field col-span-full">
+  <label for="DamageImmunities">Immunités aux dégâts</label>
+  <input
+    type="text"
+    name="DamageImmunities"
+    id="DamageImmunities"
+    hx-post="/"
+    hx-trigger="input"
+    hx-target="#oui"
+    hx-swap="innerHTML"
+    placeholder=" "
+    class="w-full"
+    value="{{ .Monster.DamageImmunities }}"
+  >
+</div>
+<div class="text-field col-span-full">
+  <label for="StateImmunities">Immunités aux états</label>
+  <input
+    type="text"
+    name="StateImmunities"
+    id="StateImmunities"
+    hx-post="/"
+    hx-trigger="input"
+    hx-target="#oui"
+    hx-swap="innerHTML"
+    placeholder=" "
+    class="w-full"
+    value="{{ .Monster.StateImmunities }}"
+  >
+</div>
+<div class="text-field col-span-3">
+  <label for="Senses">Sens</label>
+  <input
+    type="text"
+    name="Senses"
+    id="Senses"
+    hx-post="/"
+    hx-trigger="input"
+    hx-target="#oui"
+    hx-swap="innerHTML"
+    placeholder=" "
+    class="w-full"
+    value="{{ .Monster.Senses }}"
+  >
+</div>
+<div class="text-field col-span-2">
+  <label for="PassivePerception">Perception passive</label>
+  <input
+    type="text"
+    name="PassivePerception"
+    id="PassivePerception"
+    hx-post="/"
+    hx-trigger="input"
+    hx-target="#oui"
+    hx-swap="innerHTML"
+    placeholder=" "
+    class="w-full"
+    value="{{ .Monster.PassivePerception }}"
+  >
+</div>
+<div class="text-field col-span-3">
+  <label for="Languages">Langues</label>
+  <input
+    type="text"
+    name="Languages"
+    id="Languages"
+    hx-post="/"
+    hx-trigger="input"
+    hx-target="#oui"
+    hx-swap="innerHTML"
+    placeholder=" "
+    class="w-full"
+    value="{{ .Monster.Languages }}"
+  >
+</div>
+<div class="text-field col-span-2">
+  <label for="Challenge">Puissance</label>
+  <input
+    type="text"
+    name="Challenge"
+    id="Challenge"
+    hx-post="/"
+    hx-trigger="input"
+    hx-target="#oui"
+    hx-swap="innerHTML"
+    placeholder=" "
+    class="w-full"
+    value="{{ .Monster.Challenge }}"
+  >
+</div>
+<div class="text-field col-span-2">
+  <label for="MasteryBonus">Bonus de maîtrise</label>
+  <input
+    type="text"
+    name="MasteryBonus"
+    id="MasteryBonus"
+    hx-post="/"
+    hx-trigger="input"
+    hx-target="#oui"
+    hx-swap="innerHTML"
+    placeholder=" "
+    class="w-full"
+    value="{{ .Monster.MasteryBonus }}"
+  >
+</div>
+<div class="text-field col-span-full">
+  <label for="Description">
+    Description de la créature
+  </label>
+  <textarea
+    name="Description"
+    id="Description"
+    hx-post="/"
+    hx-trigger="input"
+    hx-target="#oui"
+    hx-swap="innerHTML"
+    placeholder=" "
+    class="w-full"
+    rows="8"
+  >{{ .Monster.Description }}</textarea>
+</div>

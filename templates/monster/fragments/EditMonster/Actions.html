@@ -1,11 +1,13 @@
 <article>
   <div class="flex gap-4 items-center mb-4">
     <div class="text-field mr-auto w-full">
-      <label for="SpecialTraits{{ .current }}">Nom</label>
+      <label for="Action-{{ .type }}-{{ .current }}">
+        Nom
+      </label>
       <input
         type="text"
-        name="SpecialTraits.{{ .current }}.Name"
-        id="SpecialTraits{{ .current }}"
+        name="{{ .type }}.{{ .current }}.Name"
+        id="Action-{{ .type }}-{{ .current }}"
         hx-post="/"
         hx-trigger="input"
         hx-target="#oui"
@@ -16,7 +18,7 @@
     </div>
     <button
       class="btn btn-outlined flex gap-2 items-center transition-transform hover:scale-105"
-      hx-delete="/monster/skills/new"
+      hx-delete="/monster/new/actions"
       hx-target="closest article"
       hx-swap="outerHTML"
     >
@@ -27,10 +29,12 @@
     </button>
   </div>
   <div class="text-field mb-4">
-    <label for="Description{{ .current }}">Description</label>
+    <label for="Description-{{ .type }}-{{ .current }}">
+      Description
+    </label>
     <textarea
-      name="SpecialTraits.{{ .current }}.Description"
-      id="Description{{ .current }}"
+      name="{{ .type }}.{{ .current }}.Description"
+      id="Description-{{ .type }}-{{ .current }}"
       hx-post="/"
       hx-trigger="input"
       hx-target="#oui"
@@ -43,11 +47,11 @@
 </article>
 <button
   class="btn btn-filled flex"
-  hx-get="/monster/skills/new/{{ .next }}"
+  hx-get="/monster/new/actions/{{ .next }}/{{ .type }}"
   hx-swap="outerHTML"
 >
   <span class="material-symbols-outlined">
     add
   </span>
-  <p>Ajouter une compétence</p>
+  <p>Ajouter une action</p>
 </button>
