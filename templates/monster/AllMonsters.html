@@ -10,10 +10,10 @@
         >
       </header>
       <footer class="flex justify-between p-2">
-        <hgroup class="w-max">
+        <hgroup class="w-max leading-loose">
           <h3 class="font-semibold text-lg">{{ .Name }}</h3>
-          <p class="font-light mb-2"><i>{{ .Type }} ({{ .SubType }})</i></p>
-          <p>Difficulté: {{ .Challenge }}</p>
+          <p class="font-light mb-1">{{ .Type }} ({{ .SubType }})</p>
+          <p class="font-light text-xs">Difficulté: {{ .Challenge }}</p>
         </hgroup>
         <div class="text-sm h-min flex gap-1">
           <span

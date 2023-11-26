@@ -742,6 +742,10 @@ option {
   margin-bottom: 0.5rem;
 }
 
+.mb-1 {
+  margin-bottom: 0.25rem;
+}
+
 .block {
   display: block;
 }
@@ -968,6 +972,11 @@ option {
   line-height: 1.75rem;
 }
 
+.text-xs {
+  font-size: 0.75rem;
+  line-height: 1rem;
+}
+
 .font-bold {
   font-weight: 700;
 }
@@ -982,6 +991,10 @@ option {
 
 .font-semibold {
   font-weight: 600;
+}
+
+.leading-loose {
+  line-height: 2;
 }
 
 .text-accent-1 {
