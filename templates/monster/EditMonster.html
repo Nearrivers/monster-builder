@@ -24,7 +24,7 @@
         </header>
         <main class="flex flex-col lg:flex-row gap-4 p-4">
           <section class="flex-1">
-            <form id="new-monster" hx-put="/monster/edit/{{ .ID }}" enctype="multipart/form-data">
+            <form id="new-monster" hx-put="/monster/edit/{{ .Monster.ID }}" enctype="multipart/form-data">
               <select
                 name="Campaign"
                 id="campaign"
@@ -77,7 +77,7 @@
                 Compétences
               </h2>
               <div
-                hx-get="/monster/edit/{{ .Monster.ID }}/skills"
+                hx-get="/monster/skills/edit/{{ .Monster.ID }}"
                 hx-swap="innerHTML"
                 hx-trigger="load"
               ></div>
@@ -87,7 +87,7 @@
                 Actions
               </h2>
               <div
-                hx-get="/monster/edit/{{ .Monster.ID }}/actions/Actions"
+                hx-get="/monster/actions/edit/{{ .Monster.ID }}/Actions"
                 hx-swap="innerHTML"
                 hx-trigger="load"
               ></div>
@@ -97,7 +97,7 @@
                 Actions bonus
               </h2>
               <div
-                hx-get="/monster/edit/{{ .Monster.ID }}/actions/BonusActions"
+                hx-get="/monster/actions/edit/{{ .Monster.ID }}/BonusActions"
                 hx-swap="innerHTML"
                 hx-trigger="load"
               ></div>
@@ -107,7 +107,7 @@
                 Réaction
               </h2>
               <div
-                hx-get="/monster/edit/{{ .Monster.ID }}/actions/Reactions"
+                hx-get="/monster/actions/edit/{{ .Monster.ID }}/Reactions"
                 hx-swap="innerHTML"
                 hx-trigger="load"
               ></div>
@@ -117,7 +117,7 @@
                 Actions légendaires
               </h2>
               <div
-                hx-get="/monster/edit/{{ .Monster.ID }}/actions/LegendaryActions"
+                hx-get="/monster/actions/edit/{{ .Monster.ID }}/LegendaryActions"
                 hx-swap="innerHTML"
                 hx-trigger="load"
               ></div>

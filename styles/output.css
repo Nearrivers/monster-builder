@@ -738,6 +738,10 @@ option {
   margin-right: auto;
 }
 
+.mb-2 {
+  margin-bottom: 0.5rem;
+}
+
 .block {
   display: block;
 }
@@ -750,14 +754,38 @@ option {
   display: grid;
 }
 
-.h-max {
-  height: -moz-max-content;
-  height: max-content;
+.h-16 {
+  height: 4rem;
 }
 
 .h-min {
   height: -moz-min-content;
   height: min-content;
+}
+
+.h-full {
+  height: 100%;
+}
+
+.h-max {
+  height: -moz-max-content;
+  height: max-content;
+}
+
+.h-80 {
+  height: 20rem;
+}
+
+.h-24 {
+  height: 6rem;
+}
+
+.h-60 {
+  height: 15rem;
+}
+
+.h-32 {
+  height: 8rem;
 }
 
 .w-80 {
@@ -817,12 +845,20 @@ option {
   gap: 1rem;
 }
 
+.gap-1 {
+  gap: 0.25rem;
+}
+
 .overflow-hidden {
   overflow: hidden;
 }
 
 .rounded-lg {
   border-radius: 0.5rem;
+}
+
+.rounded-full {
+  border-radius: 9999px;
 }
 
 .border {
@@ -866,12 +902,31 @@ option {
   background-color: rgb(var(--color-accent4) / var(--tw-bg-opacity));
 }
 
+.object-contain {
+  -o-object-fit: contain;
+     object-fit: contain;
+}
+
+.object-cover {
+  -o-object-fit: cover;
+     object-fit: cover;
+}
+
+.object-fill {
+  -o-object-fit: fill;
+     object-fit: fill;
+}
+
 .p-2 {
   padding: 0.5rem;
 }
 
 .p-4 {
   padding: 1rem;
+}
+
+.p-1 {
+  padding: 0.25rem;
 }
 
 .px-3 {
@@ -945,10 +1000,21 @@ option {
   transition-duration: 150ms;
 }
 
+.transition-colors {
+  transition-property: color, background-color, border-color, text-decoration-color, fill, stroke;
+  transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+  transition-duration: 150ms;
+}
+
 .hover\:scale-105:hover {
   --tw-scale-x: 1.05;
   --tw-scale-y: 1.05;
   transform: translate(var(--tw-translate-x), var(--tw-translate-y)) rotate(var(--tw-rotate)) skewX(var(--tw-skew-x)) skewY(var(--tw-skew-y)) scaleX(var(--tw-scale-x)) scaleY(var(--tw-scale-y));
+}
+
+.hover\:bg-accent-1:hover {
+  --tw-bg-opacity: 1;
+  background-color: rgb(var(--color-accent1) / var(--tw-bg-opacity));
 }
 
 @media (min-width: 1024px) {

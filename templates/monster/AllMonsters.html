@@ -1,22 +1,30 @@
 <section class="grid grid-cols-3 gap-4">
   <!-- Liste des monstres -->
   {{ range .Monsters }}
-    <article class="border border-accent-2 p-2 rounded-lg h-min w-80" id="Monster-{{ .ID }}">
-      <footer class="flex justify-between items-center">
+    <article class="bg-accent-2 rounded-lg h-min w-80 overflow-hidden" id="Monster-{{ .ID }}">
+      <header class="h-32 rounded-lg overflow-hidden border border-accent-2">
+        <img
+          src="{{ .Portrait|safe }}"
+          alt="Portrait de {{ .Name }}"
+          class="object-cover bg-accent-1"
+        >
+      </header>
+      <footer class="flex justify-between p-2">
         <hgroup class="w-max">
           <h3 class="font-semibold text-lg">{{ .Name }}</h3>
-          <p class="font-light"><i>{{ .Type }} ({{ .SubType }})</i></p>
+          <p class="font-light mb-2"><i>{{ .Type }} ({{ .SubType }})</i></p>
+          <p>Difficulté: {{ .Challenge }}</p>
         </hgroup>
-        <div class="text-sm h-min flex gap-2">
+        <div class="text-sm h-min flex gap-1">
           <span
-            class="material-symbols-outlined icon-thin cursor-pointer"
+            class="material-symbols-outlined p-1 icon-thin cursor-pointer rounded-full transition-colors hover:bg-accent-1"
             hx-get="/monster/edit/{{ .ID }}"
             hx-target="body"
             hx-push-url="true"
           >
             edit
           </span>
-          <span class="material-symbols-outlined icon-thin cursor-pointer">
+          <span class="material-symbols-outlined p-1 icon-thin cursor-pointer rounded-full transition-colors hover:bg-accent-1">
             delete
           </span>
         </div>

@@ -1,53 +1,56 @@
-<article>
-  <div class="flex gap-4 items-center mb-4">
-    <div class="text-field mr-auto w-full">
-      <label for="Action-{{ .type }}-{{ .current }}">
-        Nom
+{{ range $index, $action := .Actions }}
+  <article>
+    <div class="flex gap-4 items-center mb-4">
+      <div class="text-field mr-auto w-full">
+        <label for="Action-{{ $action.Type }}-{{ $index }}">
+          Nom
+        </label>
+        <input
+          type="text"
+          name="{{ $action.Type }}.{{ $index }}.Name"
+          id="Action-{{ $action.Type }}-{{ $index }}"
+          hx-post="/"
+          hx-trigger="input"
+          hx-target="#oui"
+          hx-swap="innerHTML"
+          placeholder=" "
+          class="w-full"
+          value="{{ $action.Name }}"
+        >
+      </div>
+      <button
+        class="btn btn-outlined flex gap-2 items-center transition-transform hover:scale-105"
+        hx-delete="/monster/actions/new"
+        hx-target="closest article"
+        hx-swap="outerHTML"
+      >
+        <span class="material-symbols-outlined">
+          delete
+        </span>
+        <p>Supprimer</p>
+      </button>
+    </div>
+    <div class="text-field mb-4">
+      <label for="Description-{{ $action.Type }}-{{ $index }}">
+        Description
       </label>
-      <input
-        type="text"
-        name="{{ .type }}.{{ .current }}.Name"
-        id="Action-{{ .type }}-{{ .current }}"
+      <textarea
+        name="{{ $action.Type }}.{{ $index }}.Description"
+        id="Description-{{ $action.Type }}-{{ $index }}"
         hx-post="/"
         hx-trigger="input"
         hx-target="#oui"
         hx-swap="innerHTML"
         placeholder=" "
         class="w-full"
-      >
+        rows="8"
+      >{{ $action.Description }}</textarea>
     </div>
-    <button
-      class="btn btn-outlined flex gap-2 items-center transition-transform hover:scale-105"
-      hx-delete="/monster/new/actions"
-      hx-target="closest article"
-      hx-swap="outerHTML"
-    >
-      <span class="material-symbols-outlined">
-        delete
-      </span>
-      <p>Supprimer</p>
-    </button>
-  </div>
-  <div class="text-field mb-4">
-    <label for="Description-{{ .type }}-{{ .current }}">
-      Description
-    </label>
-    <textarea
-      name="{{ .type }}.{{ .current }}.Description"
-      id="Description-{{ .type }}-{{ .current }}"
-      hx-post="/"
-      hx-trigger="input"
-      hx-target="#oui"
-      hx-swap="innerHTML"
-      placeholder=" "
-      class="w-full"
-      rows="8"
-    ></textarea>
-  </div>
-</article>
+  </article>
+{{ end }}
 <button
   class="btn btn-filled flex"
-  hx-get="/monster/new/actions/{{ .next }}/{{ .type }}"
+  hx-get="/monster/actions/new/{{ .next }}/{{ .type }}"
   hx-swap="outerHTML"
 >
   <span class="material-symbols-outlined">

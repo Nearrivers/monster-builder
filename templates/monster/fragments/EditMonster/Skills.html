@@ -1,49 +1,52 @@
-<article>
-  <div class="flex gap-4 items-center mb-4">
-    <div class="text-field mr-auto w-full">
-      <label for="SpecialTraits{{ .current }}">Nom</label>
-      <input
-        type="text"
-        name="SpecialTraits.{{ .current }}.Name"
-        id="SpecialTraits{{ .current }}"
+{{ range $index, $skill := .Skills }}
+  <article>
+    <div class="flex gap-4 items-center mb-4">
+      <div class="text-field mr-auto w-full">
+        <label for="SpecialTraits{{ $index }}">Nom</label>
+        <input
+          type="text"
+          name="SpecialTraits.{{ $index }}.Name"
+          id="SpecialTraits{{ $index }}"
+          hx-post="/"
+          hx-trigger="input"
+          hx-target="#oui"
+          hx-swap="innerHTML"
+          placeholder=" "
+          class="w-full"
+          value="{{ $skill.Name }}"
+        >
+      </div>
+      <button
+        class="btn btn-outlined flex gap-2 items-center transition-transform hover:scale-105"
+        hx-delete="/monster/skills/new"
+        hx-target="closest article"
+        hx-swap="outerHTML"
+      >
+        <span class="material-symbols-outlined">
+          delete
+        </span>
+        <p>Supprimer</p>
+      </button>
+    </div>
+    <div class="text-field mb-4">
+      <label for="Description{{ $index }}">Description</label>
+      <textarea
+        name="SpecialTraits.{{ $index }}.Description"
+        id="Description{{ $index }}"
         hx-post="/"
         hx-trigger="input"
         hx-target="#oui"
         hx-swap="innerHTML"
         placeholder=" "
         class="w-full"
-      >
+        rows="8"
+      >{{ $skill.Description }}</textarea>
     </div>
-    <button
-      class="btn btn-outlined flex gap-2 items-center transition-transform hover:scale-105"
-      hx-delete="/monster/new/skills"
-      hx-target="closest article"
-      hx-swap="outerHTML"
-    >
-      <span class="material-symbols-outlined">
-        delete
-      </span>
-      <p>Supprimer</p>
-    </button>
-  </div>
-  <div class="text-field mb-4">
-    <label for="Description{{ .current }}">Description</label>
-    <textarea
-      name="SpecialTraits.{{ .current }}.Description"
-      id="Description{{ .current }}"
-      hx-post="/"
-      hx-trigger="input"
-      hx-target="#oui"
-      hx-swap="innerHTML"
-      placeholder=" "
-      class="w-full"
-      rows="8"
-    ></textarea>
-  </div>
-</article>
+  </article>
+{{ end }}
 <button
   class="btn btn-filled flex"
-  hx-get="/monster/new/skills/{{ .next }}"
+  hx-get="/monster/skills/new/{{ .next }}"
   hx-swap="outerHTML"
 >
   <span class="material-symbols-outlined">
